@@ -1,43 +1,49 @@
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
         <!-- <a class="navbar-brand" style="font-size: 24px;">Tuguegarao E Services</a> -->
         
-        <img src="assets/tuguegaraocitylogo3.png" style=" width: 70px;
+        <img src="assets/alcalalogo.png" style=" width: 70px;
             height: 70px;" class="navbar-toggler d-lg-none" data-target="#navbarSupportedContent" /> 
        
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
-            <img src="assets/tuguegaraocitylogo3.png" style=" width: 70px;
+            <img src="assets/alcalalogo.png" style=" width: 70px;
             height: 70px;"/> 
         </ul>
             </div>
       </nav>
-
+      
       <div *ngIf="isnull == true" class="data text-white text-center d-flex justify-content-center align-items-center h-75">
         <div>
-            <h3>E-mail</h3>
+            <h3 style="color: rgb(0, 0, 0); font-weight:bolder;">E-mail</h3>
             <input type="email" class="form-control" placeholder="Enter e-mail" 
             style="width: 245px;"
             [(ngModel)]="email" [ngModelOptions]="{standalone: true}"/>
-            <h3>Password</h3>
+            <h3 style="color: rgb(0, 0, 0); font-weight:bolder;">Password</h3>
             <input type="password" class="form-control" 
             placeholder="Enter password" style="width: 245px;"
             [(ngModel)]="password" [ngModelOptions]="{standalone: true}"/>
             <br>
-            <button class="btn btn-success" (click)="login()">SIGN IN</button>
+            <button *ngIf="!hideLoginAndSignupButton" class="btn btn-success" (click)="login()">SIGN IN</button>
+           
+            <div *ngIf="hideLoginAndSignupButton" class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+              </div>
+            </div>
             <br>
             <br>
-            <button class="btn btn-warning" routerLink="signup">SIGN UP</button>
+            <button *ngIf="!hideLoginAndSignupButton" class="btn btn-warning" routerLink="signup">SIGN UP</button>
         </div>
       </div>
 
       <div *ngIf="isnull == false" class="data text-white text-center d-flex justify-content-center align-items-center h-75">
         <div>
-            <h3>E-mail</h3>
+            <h3 style="color: rgb(0, 0, 0); font-weight:bolder;">E-mail</h3>
             <input disabled type="email" class="form-control" 
             placeholder="Enter e-mail" style="width: 245px;"
             />
-            <h3>Password</h3>
+            <h3 style="color: rgb(0, 0, 0); font-weight:bolder;">Password</h3>
             <input disabled type="password" class="form-control" placeholder="Enter password" style="width: 245px;"/>
             <br>
             <button class="btn btn-success" routerLink="{{link}}">{{continueas}}</button>
@@ -47,10 +53,10 @@
   <div class="container-fluid bg-tertiary">
     <div class="row p-5" id="login_footer">
       <div class="col-md-3">
-        <b style="color: whitesmoke; font-size: 20px;">Tuguegarao City E-Services</b>
+        <b style="color: whitesmoke; font-size: 20px;">Alcala Cagayan E-Services</b>
         <br><br>
         <small style="color: whitesmoke;">
-          For any inquiries, please call 0916-887-2897<br>or email helpdesk@tuguegaraocity.gov.ph
+          For any inquiries, please call 0916-887-2897<br>or email helpdesk@alcalacagayan.gov.ph
         </small>
       </div>
       <div class="col-md-4 ">

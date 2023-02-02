@@ -1,5 +1,5 @@
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, ApplicationRef, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
   FormBuilder,
@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import * as moment from 'moment';
 import { map } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-vaxeasy',
   templateUrl: './vaxeasy.component.html',
@@ -51,10 +52,17 @@ export class VaxeasyComponent implements OnInit, OnChanges {
   public occupationbarangayempty: boolean = false
   public ezconsultnumberempty: boolean = false
   public email: string = ''
+  public userObject: any = ''
+  public hideSubmitAndCancelButton: boolean = false
+  public showLoading: boolean = false
+  public showSuccessMessage: boolean = false
   constructor(
     private afauth: AngularFireAuth,
     private afstore: AngularFirestore,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private applicationRef: ApplicationRef,
+    private zone: NgZone
   ) 
   {
     this.afauth.authState.subscribe((user) => {
@@ -64,6 +72,7 @@ export class VaxeasyComponent implements OnInit, OnChanges {
           .valueChanges()
           .subscribe((data) => {
             const userObject = data as any;
+            this.userObject = data as any
             console.log('user object', userObject);
             this.firstname = userObject.firstname;
             this.middlename = userObject.middlename;
@@ -95,14 +104,29 @@ export class VaxeasyComponent implements OnInit, OnChanges {
             else {
               this.workingtugue = true;
               this.occupationunit = '';
-              this.occupationbarangay = '';
+              this.occupationbarangay =  '';
               this.occupationstreet = '';
-              this.occupationcity = 'Tuguegarao City';
+              this.occupationcity = 'Alcala';
               this.occupationprovince = 'Cagayan';
               this.occupationunitempty = true;
               this.occupationstreetempty = true;
               this.occupationbarangayempty = true
             }
+            if (userObject.city != 'Alcala') 
+                    {
+                  this.router.navigateByUrl('/home')   
+                    }
+              // this.router.events.subscribe(() => {
+              //   this.zone.run(() => {
+              //     setTimeout(() => {
+              //       if (userObject.city != 'Alcala') 
+              //       {
+              //     this.router.navigateByUrl('/home')   
+              //       }   
+              //     }, 0)
+              //   })
+              // })
+            
           });
       }
    
@@ -129,7 +153,7 @@ export class VaxeasyComponent implements OnInit, OnChanges {
         [
           Validators.required,
           Validators.pattern(
-            /(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})/
+            /^(09|63)[\d]{9}$/
           ),
         ],
       ],
@@ -156,7 +180,8 @@ export class VaxeasyComponent implements OnInit, OnChanges {
     }
 
   ev(event: any) {
-    if (this.workingorstudyingintugue === 'no') {
+    if (this.workingorstudyingintugue === 'no') 
+    {
       this.workingtugue = false;
       this.occupation = '';
       this.occupationunit = '';
@@ -169,13 +194,14 @@ export class VaxeasyComponent implements OnInit, OnChanges {
       this.occupationstreetempty = false;
       this.occupationbarangayempty = false
     } 
-    else {
+    else 
+    {
       this.workingtugue = true;
-      this.occupation = '';
+      this.occupation = this.userObject.occupation;
       this.occupationunit = '';
       this.occupationbarangay = '';
       this.occupationstreet = '';
-      this.occupationcity = 'Tuguegarao City';
+      this.occupationcity = 'Alcala';
       this.occupationprovince = 'Cagayan';
     }
     this.occupationnevent(event);
@@ -362,6 +388,8 @@ export class VaxeasyComponent implements OnInit, OnChanges {
 
 savedInformation()  
 {
+  this.hideSubmitAndCancelButton = true;
+  this.showLoading = true
   let uniqueId = Math.random().toString(36).replace(".", "");
   var referenceNumber = uniqueId.slice(0, 14).toUpperCase()
 
@@ -396,7 +424,14 @@ savedInformation()
     postedDate: moment(new Date()).format('YYYY-MM-DD hh:mm A'),
     status: 'Pending'  
     }).then(el => {
-      alert("Information saved successfully!")
+      setTimeout(() => {
+        this.showLoading = false
+        this.showSuccessMessage = true
+      }, 4000);
+    setTimeout(() => {
+      this.showSuccessMessage = false
+      this.hideSubmitAndCancelButton = false
+    }, 7000);
     }).catch(err => {
       console.log("save failed", err)
     })

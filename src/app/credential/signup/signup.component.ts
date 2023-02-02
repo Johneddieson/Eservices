@@ -37,6 +37,11 @@ export class SignupComponent implements OnInit, OnChanges {
   public hideregisterform: boolean = false
   public continueas: string = ''
   public link: string = ''
+  public iserror: boolean = false
+  public emailAlreadyInusedErrorMessage: string = ''
+  public showLoading: boolean = false;
+  public showSuccessMessage: boolean = false;
+  public hideRegisterandCancelButton: boolean = false;
   constructor(private formBuilder: FormBuilder, private authService: AuthServiceService,
     private router: Router,  private afstore: AngularFirestore,
     private afauth: AngularFireAuth,
@@ -54,7 +59,7 @@ export class SignupComponent implements OnInit, OnChanges {
         [
           Validators.required,
           Validators.pattern(
-            /(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})/
+            /^(09|63)[\d]{9}$/
           ),
         ],
       ],
@@ -98,7 +103,7 @@ export class SignupComponent implements OnInit, OnChanges {
     })
   }
 
-  signup() {
+   signup() {
     if (this.aFormGroup.controls['email'].value !== this.confirmEmail) {
       this.asterisk =
         (this.aFormGroup.controls['city'].value === 'Others' &&
@@ -181,7 +186,7 @@ export class SignupComponent implements OnInit, OnChanges {
           }).catch(err2 => {
             console.log("err update display name", err2)
           })
-          localStorage.setItem('user', JSON.stringify(el.user));
+          
         
           this.afstore.doc(`users/${el.user?.uid}`).set({
             uid: user.uid,
@@ -202,10 +207,28 @@ export class SignupComponent implements OnInit, OnChanges {
             
             //password: this.aFormGroup.controls['password'].value
           })
-        
-          this.router.navigateByUrl('home');
+            this.hideRegisterandCancelButton =  true
+            this.showLoading = true;
+           
+            setTimeout(() => {
+              this.showLoading = false
+              this.showSuccessMessage = true
+            }, 3000);
+            
+            setTimeout(() => {
+              this.showSuccessMessage = false
+              this.aFormGroup.reset()
+              localStorage.setItem('user', JSON.stringify(el.user));
+              this.router.navigateByUrl('home');
+              this.hideRegisterandCancelButton = false
+            }, 5000);
+            
         }).catch(err => {
+          //Error alert
             console.log("err", err);
+            this.iserror = true
+            this.emailAlreadyInusedErrorMessage = err.message
+            window.scrollTo(0, 0);
         })
       }
     }
@@ -278,7 +301,7 @@ export class SignupComponent implements OnInit, OnChanges {
 
   istuguegaraocity(event: any) {
     const query = event.target.value.toLowerCase();
-    if (query == 'tuguegarao city' || query == '') {
+    if (query == 'alcala' || query == '') {
       this.isTugegaraoCity = true;
 
       this.aFormGroup.controls['barangaydropdown'].setValue('');
