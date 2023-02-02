@@ -1,0 +1,38 @@
+header {
+    background-image: url('/assets/tuguecityhall.png');
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+.navbar {
+    background-color: rgba(0,0,0,0.5);
+    color: #fff !important;
+}
+.nav-link {
+    color: #fff !important;
+    margin: 0px 10px;
+    text-transform: uppercase;
+}
+.navbar-brand {
+    color: #fed136 !important;
+}
+
+.data p {
+    font-size: 1.35rem;
+    font-style: italic;
+    line-height: 1.35rem;
+    margin-bottom: 1rem;
+}
+.data h3 {
+    font-size: 2.45rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+    margin-bottom: 1rem; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
+p, h5 {
+    text-align: justify;
+}

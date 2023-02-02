@@ -1,0 +1,594 @@
+<div id="page-content-wrapper">
+    <div class="container-fluid p-1 bg-white">
+        <div class="alert alert-danger" role="alert" id="notif-alert" *ngIf="error == true">Please fill all necessary fields. All fields with asterisk(*) are required.</div>
+        <div class="alert alert-danger" role="alert" id="notif-alert" *ngIf="underageMessage == true">The current Tuguegarao Vax Easy program only accepts individuals 5 years old and above. Please wait for further advise once the program is available to you.</div>
+        <form id="vax_easy_reg_form" class="needs-validation" [formGroup]="aFormGroup">
+        <div class="card content-container m-4 p-5" style="min-height: 500px">
+            <h4 class="cc-title fi-case-initial" id="top_label"><strong>Tuguegarao Vax Easy Registration</strong></h4>
+            <div class="card-body" style="margin-top: 0rem; font-family: helvetica">
+                <div class="card" id="allforms" style="border-radius: 0px">
+                    <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_fname">
+                                            <span class="text-danger">*</span> First Name
+                                        </label>
+                                        <input type="text" class="form-control" id="str_fname" 
+                                            style="text-transform:uppercase" formControlName="firstnamevalue" [(ngModel)]="firstname"
+                                            >
+                                            <p style="color: red;" *ngIf="f['firstnamevalue'].errors && f['firstnamevalue'].errors['required']">Shouldn't be empty.</p>   
+                                            <p style="color: red;" *ngIf="f['firstnamevalue'].errors && f['firstnamevalue'].errors['pattern']">Numbers are not allowed</p>  
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_mname">
+                                            Middle Name
+                                        </label>
+                                        <input type="text" class="form-control" id="str_mname"
+                                            style="text-transform:uppercase" [(ngModel)]="middlename"  [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_lname">
+                                            <span class="text-danger">*</span> Last Name
+                                        </label>
+                                        <input type="text" class="form-control" id="str_lname"
+                                            style="text-transform:uppercase" formControlName="lastnamevalue" [(ngModel)]="lastname">                                        
+                  <p style="color: red;" *ngIf="f['lastnamevalue'].errors && f['lastnamevalue'].errors['required']">Shouldn't be empty.</p>   
+                  <p style="color: red;" *ngIf="f['lastnamevalue'].errors && f['lastnamevalue'].errors['pattern']">Numbers are not allowed</p>  
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_suffix">
+                                            Suffix
+                                        </label>
+                                         <select name="str_suffix" id="str_suffix" class="form-select" [(ngModel)]="suffix"  [ngModelOptions]="{standalone: true}">
+                                            <option value="" selected="selected"></option>
+                                            <option value="JR.">JR.</option>
+                                            <option value="SR.">SR.</option>
+                                            <option value="I">I</option>
+                                            <option value="II">II</option>
+                                            <option value="III">III</option>
+                                            <option value="IV">IV</option>
+                                            <option value="V">V</option>
+                                            <option value="VI">VI</option>
+                                            <option value="VII">VII</option>
+                                            <option value="VIII">VIII</option>
+                                            <option value="IX">IX</option>
+                                            <option value="X">X</option>
+                                            <option value="XI">XI</option>
+                                            <option value="XII">XII</option>
+                                            <option value="XIII">XIII</option>
+                                            <option value="XIV">XIV</option>
+                                            <option value="XV">XV</option>
+                                            <option value="XVI">XVI</option>
+                                            <option value="XVII">XVII</option>
+                                            <option value="XVIII">XVIII</option>
+                                            <option value="XIX">XIX</option>
+                                            <option value="XX">XX</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- END NAME -->
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="str_bdate">
+                                            <span class="text-danger">*</span> Date of Birth
+                                        </label>
+                                        <div class="row pr-3 pl-3">
+                                            <input type="date" class="form-control" id="str_birthdate"
+                                             [(ngModel)]="birthdate" formControlName="birthdatevalue">
+                                             <p style="color: red;" *ngIf="f['birthdatevalue'].errors && f['birthdatevalue'].errors['required']">Shouldn't be empty.</p>   
+                                             <p style="color: red;" *ngIf="underageMessage == true">This Birthday is not accepted</p>       
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="int_sex">
+                                            <span class="text-danger">*</span> Sex
+                                        </label>
+                                        <select name="int_sex" class="form-select" id="int_sex"
+                                        [(ngModel)]="sex" formControlName="sexvalue">
+                                            <option value="" selected="selected">SELECT SEX</option>
+                                            <option value="Male">MALE</option>
+                                            <option value="Female">FEMALE</option>
+                                        </select>
+                                        <p style="color: red;" *ngIf="f['sexvalue'].errors && f['sexvalue'].errors['required']">Shouldn't be empty.</p>   
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <input type="hidden" value="0" id="mobile_verification_flag">
+                                    <input type="hidden" value="0" id="mobile_verification">
+                                    <div class="form-group">
+                                        <label for="int_mobnum">
+                                            <span class="text-danger">*</span> Mobile Number
+                                        </label>
+                                        <!-- (keyup)="onKeypressEvent($event)" -->
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <input type="text" class="form-control" id="int_mobnum"
+                                                    placeholder="09XXXXXXXXX" 
+                                                    [(ngModel)]="phonenumber" formControlName="phonenumbervalue"
+                                                    maxlength="11">
+                                                    <p style="color: red;" *ngIf="f['phonenumbervalue'].errors && f['phonenumbervalue'].errors['required']">Shouldn't be empty.</p>   
+                                                    <p style="color: red;" *ngIf="f['phonenumbervalue'].errors && f['phonenumbervalue'].errors['pattern']">Numbers are not allowed</p>  
+                                 
+                                                </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <h5 style="font-weight: bold;">Current Residence</h5>
+                                </div>
+
+                                <div class="col-md-6 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Province : </h6>
+                                    <input type="text" class="form-control" id="str_province" 
+                                    [(ngModel)]="province"  [ngModelOptions]="{standalone: true}" disabled>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="col-xl-6 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> City/Municipality :</h6>
+                                    <input type="text" class="form-control" id="str_province" 
+                                    [(ngModel)]="city"  [ngModelOptions]="{standalone: true}" disabled>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="col-xl-4 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> House#, block, lot, apt,
+                                        suite, unit, building, floor, etc :</h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_house_no" 
+                                        data-elname="House #" style="text-transform:uppercase" 
+                                        [(ngModel)]="housenumber"  [ngModelOptions]="{standalone: true}" disabled>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="col-xl-4 mt-2">
+                                    <h6 class="ml-1"> <span class="text-danger"><strong>*</strong></span> Street
+                                        address, village, etc : </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_street" 
+                                        data-elname="Street" style="text-transform:uppercase"
+                                        [(ngModel)]="street"  [ngModelOptions]="{standalone: true}" disabled>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="col-xl-4 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Barangay :</h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        style="text-transform: uppercase;" data-elname="Barangay"
+                                        [(ngModel)]="barangay"  [ngModelOptions]="{standalone: true}" disabled>
+                                   
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="col-lg-6 mt-5 mb-2">
+                                    <div class="form-group">
+                                        <label for="int_city" id="lbl_work">
+                                            Ikaw ba ay nagtatrabaho / nag-aaral sa Tuguegarao City?
+                                        </label><br>
+                                        <span class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3 align-middle"
+                                            style="border: 1px solid #ced4da; cursor: pointer;">
+                                            <div class="custom-control custom-radio" style="cursor: pointer;">
+
+                                                <input type="radio" class="custom-control-input" id="qc_occupation_yes"
+                                                    name="qc_occupation" value="yes"
+                                                    [(ngModel)]="workingorstudyingintugue"  [ngModelOptions]="{standalone: true}"
+                                                    (change)="ev($event)">
+                                                <label class="form-control pt-2" for="qc_occupation_yes"
+                                                    style="cursor: pointer;">Oo</label>
+                                            </div>
+                                        </span>
+
+                                        <span class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3 align-middle"
+                                            style="border: 1px solid #ced4da; cursor: pointer;">
+                                            <div class="custom-control custom-radio" style="cursor: pointer;">
+                                                <!-- checked="" -->
+                                                <input type="radio" class="custom-control-input" id="qc_occupation_no"
+                                                    name="qc_occupation" value="no"
+                                                    [(ngModel)]="workingorstudyingintugue"  [ngModelOptions]="{standalone: true}"
+                                                    (change)="ev($event)">
+                                                <label class="form-control pt-2" for="qc_occupation_no"
+                                                    style="cursor: pointer;"
+                                                    >Hindi</label>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mt-5 mb-2">
+                                    <div class="form-group">
+                                        <label for="str_occupation"><span
+                                                class="text-danger workinqc_fields"><strong></strong></span>
+                                                <span class="text-danger" *ngIf="workingorstudyingintugue === 'yes'">*</span>   Occupation / Pangalan ng Paaralan
+                                        </label> <br>
+                                        <input type="text" class="form-control" id="str_occupation"
+                                            style="text-transform:uppercase" [disabled]="workingorstudyingintugue === 'no'"
+                                            [(ngModel)]="occupation"  [ngModelOptions]="{standalone: true}"
+                                            (keyup)="occupationnevent($event)">
+                                            <p style="color: red;" *ngIf="occupationempty == true">Shouldn't be empty.</p>   
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 mb-2">
+                                    <h6 style="font-weight: bold;">Kung oo, current work / school address:</h6>
+                                </div>
+
+                                <div class="col-md-6 mt-2">
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>  Province :
+                                    </h6>
+                                    <input type="text" class="form-control" id="str_province2" 
+                                     disabled [(ngModel)]="occupationprovince"  [ngModelOptions]="{standalone: true}">
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="col-xl-6 mt-2">
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        City/Municipality :</h6>
+                                        <input type="text" class="form-control" id="str_city2" 
+                                        disabled [(ngModel)]="occupationcity"  [ngModelOptions]="{standalone: true}">
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                
+                                <div class="col-xl-4 mt-2">
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>  Unit#,
+                                        block, lot, apt, suite, unit, building, floor, etc :</h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_work_house_no"
+                                         data-elname="House #" style="text-transform:uppercase"
+                                         [disabled]="workingorstudyingintugue === 'no'"
+                                         [(ngModel)]="occupationunit"  [ngModelOptions]="{standalone: true}"
+                                         >
+                                         <!-- <p style="color: red;" *ngIf="occupationunitempty == true">Shouldn't be empty.</p> -->
+                                </div>
+
+                                <div class="col-xl-4 mt-2">
+                                    <h6 class="ml-1"> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        <span class="text-danger" *ngIf="workingorstudyingintugue === 'yes'">*</span> Street address, village, etc : </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_work_street"
+                                    data-elname="Street" style="text-transform:uppercase"
+                                    [disabled]="workingorstudyingintugue === 'no'"
+                                    [(ngModel)]="occupationstreet" [ngModelOptions]="{standalone: true}"
+                                    (keyup)="occupationstreetnevent($event)">
+                                    <p style="color: red;" *ngIf="occupationstreetempty == true">Shouldn't be empty.</p>
+                                </div>
+                                <div class="col-xl-4 mt-2">
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> <span class="text-danger" *ngIf="workingorstudyingintugue === 'yes'">*</span> Barangay :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no"
+                                        style="display:none;text-transform:uppercase" id="txt_work_barangay" required=""
+                                        disabled="" data-elname="Barangay">
+                                    <select class="form-select" id="work_slct_barangay" [disabled]="workingorstudyingintugue === 'no'"
+                                        data-elname="Barangay" style="text-transform:uppercase"
+                                        [(ngModel)]="occupationbarangay"  [ngModelOptions]="{standalone: true}"
+                                        (change)="occupationbarangaynevent($event)">
+                                        <option value="" selected="selected">-- Select Barangay -- </option>
+                                        <option value="Annafunan East">Annafunan East</option>
+                                        <option value="Annafunan West">Annafunan West</option>
+                                        <option value="Atulayan Norte">Atulayan Norte</option>
+                                        <option value="Atulayan Sur">Atulayan Sur</option>
+                                        <option value="Bagay">Bagay</option>
+                                        <option value="Buntun">Buntun</option>
+                                        <option value="Caggay">Caggay</option>
+                                        <option value="Capatan">Capatan</option>
+                                        <option value="Carig Norte (Reyes)">Carig Norte (Reyes)</option>
+                                        <option value="Carig Sur">Carig Sur</option>
+                                        <option value="Caritan Centro">Caritan Centro</option>
+                                        <option value="Caritan Norte">Caritan Norte</option>
+                                        <option value="Caritan Sur">Caritan Sur</option>
+                                        <option value="Cataggaman Nuevo">Cataggaman Nuevo</option>
+                                        <option value="Cataggaman Pardo">Cataggaman Pardo</option>
+                                        <option value="Cataggaman Viejo">Cataggaman Viejo</option>
+                                        <option value="Centro 01">Centro 01</option>
+                                        <option value="Centro 02">Centro 02</option>
+                                        <option value="Centro 03">Centro 03</option>
+                                        <option value="Centro 04">Centro 04</option>
+                                        <option value="Centro 05">Centro 05</option>
+                                        <option value="Centro 06">Centro 06</option>
+                                        <option value="Centro 07">Centro 07</option>
+                                        <option value="Centro 08">Centro 08</option>
+                                        <option value="Centro 09">Centro 09</option>
+                                        <option value="Centro 10">Centro 10</option>
+                                        <option value="Centro 11 (Balzain East)">Centro 11 (Balzain East)</option>
+                                        <option value="Centro 12 (Balzain West)">Centro 12 (Balzain West)</option>
+                                        <option value="Dadda">Dadda</option>
+                                        <option value="Gosi Norte">Gosi Norte</option>
+                                        <option value="Gosi Sur">Gosi Sur</option>
+                                        <option value="Larion Alto">Larion Alto</option>
+                                        <option value="Larion Bajo">Larion Bajo</option>
+                                        <option value="Leonarda">Leonarda</option>
+                                        <option value="Libag Norte">Libag Norte</option>
+                                        <option value="Libag Sur">Libag Sur</option>
+                                        <option value="Linao East">Linao East</option>
+                                        <option value="Linao Norte">Linao Norte</option>
+                                        <option value="Linao West">Linao West</option>
+                                        <option value="Namabbalan Norte">Namabbalan Norte</option>
+                                        <option value="Namabbalan Sur">Namabbalan Sur</option>
+                                        <option value="Pallua Norte">Pallua Norte</option>
+                                        <option value="Pallua Sur">Pallua Sur</option>
+                                        <option value="Pengue">Pengue</option>
+                                        <option value="San Gabriel">San Gabriel</option>
+                                        <option value="Tagga">Tagga</option>
+                                        <option value="Tanza">Tanza</option>
+                                        <option value="Ugac Norte">Ugac Norte</option>
+                                        <option value="Ugac Sur">Ugac Sur</option>
+                                    </select>
+                                    <p style="color: red;" *ngIf="occupationbarangayempty == true">Shouldn't be empty.</p>
+                                </div>
+                                <div class="second-part" id="second-part" style="border-radius: 0px">
+                                    <div class="p-3" id="second-part-body">
+                                        <input type="hidden" name="allergy_vax" id="allergy_vax">
+                                        <input type="hidden" name="comorbidity_vax" id="comorbidity_vax">
+                                        <div class="row">
+                                            <div class="col-lg-6 mt-4 mb-2 second-part">
+                                                <div class="form-group">
+                                                    <label for="str_priority_grp">
+                                                        <span class="text-danger">*</span> Priority Group
+                                                    </label>
+                                                    <select name="int_priority_grp" class="form-select"
+                                                        id="int_priority_grp" formControlName="prioritygroup">
+                                                        <option value="" selected="selected">SELECT PRIORITY</option>
+                                                        <option value="A1 Health Care Workers">A1 Health Care Workers</option>
+                                                        <option value="A2 Senior Citizens">A2 Senior Citizens</option>
+                                                        <option value="A3 Adult with Comorbidity">A3 Adult with Comorbidity</option>
+                                                        <option value="A4 Frontline Personnel in Essential Sector">A4 Frontline Personnel in Essential Sector
+                                                        </option>
+                                                        <option value="A5 Poor Population">A5 Poor Population</option>
+                                                        <option value="B1 Teachers and Social Workers">B1 Teachers and Social Workers</option>
+                                                        <option value="B2 Other Government Workers">B2 Other Government Workers</option>
+                                                        <option value="B3 Other Essential Workers">B3 Other Essential Workers</option>
+                                                        <option value="B4 Socio-demographic Groups">B4 Socio-demographic Groups</option>
+                                                        <option value="B5 Overseas Filipino Workers">B5 Overseas Filipino Workers</option>
+                                                        <option value="B6 Other Remaining Workforce">B6 Other Remaining Workforce</option>
+                                                        <option value="C Rest of Adult Population">C Rest of Adult Population</option>
+                                                    </select>
+                                                    <p style="color: red;" *ngIf="f['prioritygroup'].errors && f['prioritygroup'].errors['required']">Shouldn't be empty.</p>   
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 mt-4 mb-2 second-part">
+                                                <div class="form-group">
+                                                    <label for="int_city">
+                                                        <span class="text-danger">*</span> Ikaw ba ay may allergy sa mga
+                                                        bakuna o sangkap nito?
+                                                    </label> <br>
+                                                    <span class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3"
+                                                        style="border: 1px solid #ced4da; cursor: pointer;">
+                                                        <div class="custom-control custom-radio"
+                                                            style="cursor: pointer;">
+
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="qc_vax_allergy_yes" name="allergyvalue" value="oo"
+                                                                [(ngModel)]="allergy" formControlName="allergyvalue">
+                                                            <label class="form-control pt-2"
+                                                                for="qc_vax_allergy_yes"
+                                                                style="cursor: pointer;">Oo</label>
+                                                        </div>
+                                                    </span>
+
+                                                    <span class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3"
+                                                        style="border: 1px solid #ced4da; cursor: pointer;">
+                                                        <div class="custom-control custom-radio"
+                                                            style="cursor: pointer;">
+
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="qc_vax_allergy_no" name="allergyvalue"
+                                                                value="wala"
+                                                                [(ngModel)]="allergy" formControlName="allergyvalue">
+                                                            <label class="form-control pt-2"
+                                                                for="qc_vax_allergy_no"
+                                                                style="cursor: pointer;">Wala</label>
+                                                        </div>
+                                                    </span>
+                                                    <p style="color: red;" *ngIf="f['allergyvalue'].errors && f['allergyvalue'].errors['required']">Shouldn't be empty.</p>   
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 mt-4 mb-2 second-part">
+
+                                                <div class="form-group">
+                                                    <label for="int_city">
+                                                        <span class="text-danger">*</span> Ikaw ba ay may comorbidity?
+                                                    </label> <br>
+                                                    <span class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3"
+                                                        style="border: 1px solid #ced4da; cursor: pointer;">
+                                                        <div class="custom-control custom-radio"
+                                                            style="cursor: pointer;">
+
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="qc_comorbidity_yes" name="comorbidityvalue" value="oo"
+                                                                [(ngModel)]="comorbidity" formControlName="comorbidityvalue">
+                                                            <label class="form-control pt-2"
+                                                                for="qc_comorbidity_yes"
+                                                                style="cursor: pointer;">Oo</label>
+                                                        </div>
+                                                    </span>
+
+                                                    <span class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3"
+                                                        style="border: 1px solid #ced4da; cursor: pointer;">
+                                                        <div class="custom-control custom-radio"
+                                                            style="cursor: pointer;">
+
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="qc_comorbidity_no" name="comorbidityvalue" value="wala"
+                                                                [(ngModel)]="comorbidity" formControlName="comorbidityvalue">
+                                                            <label class="form-control pt-2"
+                                                                for="qc_comorbidity_no"
+                                                                style="cursor: pointer;">Wala</label>
+                                                        </div>
+                                                    </span>
+                                                    <p style="color: red;" *ngIf="f['comorbidityvalue'].errors && f['comorbidityvalue'].errors['required']">Shouldn't be empty.</p>   
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-12 mt-4 mb-2 second-part">
+
+                                                <div class="form-group">
+                                                    <label for="int_city">
+                                                        <span class="text-danger">*</span>Kailan ka mas available para
+                                                        sa iyong bakuna?
+                                                    </label> <br>
+                                                    <span class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3"
+                                                        style="border: 1px solid #ced4da; cursor: pointer;">
+                                                        <div class="custom-control custom-radio"
+                                                            style="cursor: pointer;">
+
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="qc_agree_vaccine_yes" name="availability"
+                                                                value="araw"
+                                                                [(ngModel)]="preferredavailability" formControlName="availability">
+                                                            <label class="form-control pt-2"
+                                                                for="qc_agree_vaccine_yes"
+                                                                style="cursor: pointer;">Araw</label>
+                                                        </div>
+                                                    </span>
+
+                                                    <span class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3"
+                                                        style="border: 1px solid #ced4da; cursor: pointer;">
+                                                        <div class="custom-control custom-radio"
+                                                            style="cursor: pointer;">
+
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="qc_agree_vaccine_no" name="availability"
+                                                                value="gabi"
+                                                                [(ngModel)]="preferredavailability" formControlName="availability">
+                                                            <label class="form-control pt-2"
+                                                                for="qc_agree_vaccine_no"
+                                                                style="cursor: pointer;">Gabi</label>
+                                                        </div>
+                                                    </span>
+                                                    <br><br>
+                                                    <div style="font-size: 13px" class="d-none"><span
+                                                            class="text-danger">*</span><i>Limitado ang vaccination
+                                                            slots para sa schedule sa gabi</i></div>
+                                                            <p style="color: red;" *ngIf="f['availability'].errors && f['availability'].errors['required']">Shouldn't be empty.</p>   
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-6 mt-4 mb-2 second-part">
+
+                                                <div class="form-group">
+                                                    <label for="int_city">
+                                                        Mayroon ka bang eZConsult account?
+                                                    </label> <br>
+                                                    <span
+                                                        class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3 align-middle"
+                                                        style="border: 1px solid #ced4da; cursor: pointer;">
+                                                        <div class="custom-control custom-radio"
+                                                            style="cursor: pointer;">
+
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="ezconsult_yes" name="qc_ezconsult" value="oo"
+                                                                (change)="ezconsult($event)"
+                                                                [(ngModel)]="inp_ezconsult"  [ngModelOptions]="{standalone: true}">
+                                                            <label class="form-control pt-2" for="ezconsult_yes"
+                                                                style="cursor: pointer;">Oo</label>
+                                                        </div>
+                                                    </span>
+
+                                                    <span
+                                                        class="badge badge-pill badge-light pt-2 pb-2 pl-3 pr-3 align-middle"
+                                                        style="border: 1px solid #ced4da; cursor: pointer;">
+                                                        <div class="custom-control custom-radio"
+                                                            style="cursor: pointer;">
+
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="ezconsult_no" name="qc_ezconsult" value="wala"
+                                                                [(ngModel)]="inp_ezconsult" [ngModelOptions]="{standalone: true}"
+                                                                 (change)="ezconsult($event)">
+                                                            <label class="form-control pt-2" for="ezconsult_no"
+                                                                style="cursor: pointer;">Wala</label>
+                                                        </div>
+                                                    </span>
+                                                </div>
+
+                                                <label for="ezconsult">
+                                                    <span class="text-danger" *ngIf="haveEzconsult == true">*</span>Kung oo, EZConsult Patient No.:
+                                                </label>
+                                                <input type="text" class="form-control" id="ezconsult"
+                                                    maxlength="10" minlength="1" [disabled]="haveEzconsult == false"
+                                                    [(ngModel)]="ezconsultnumber" [ngModelOptions]="{standalone: true}"
+                                                    (keyup)="numbersOnly($event)">
+                                                        
+                                                    <p style="color: red;" *ngIf="ezconsultnumberempty == true">Shouldn't be empty.</p>
+                                            </div>
+
+                                            <div class="col-lg-12 mt-5 mb-2 second-part">
+
+                                                <div class="form-group">
+                                                    <label for="agree_terms">
+                                                        <span class="text-danger">*</span> Electronic Form Consent
+                                                    </label> <br>
+                                                    <div class="custom-control custom-checkbox"
+                                                        style="cursor: pointer;">
+                                                        
+                                                             
+                                                        <label class="form-control" for="agree_terms"
+                                                            style="font-size: 12pt">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                            id="agree_terms" name="agree_terms" style="cursor: pointer;"
+                                                            formControlName="electronicform">
+                                                            Lahat ng impormasyong aking ibinigay
+                                                            ay totoo at wasto.</label>
+                                                    </div>
+                                                    <p style="color: red;" *ngIf="f['electronicform'].errors && f['electronicform'].errors['required']">Shouldn't be empty.</p>   
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 econsent-minor-div mb-3" style="display: none;">
+                                                <div class="form-horizontal">
+                                                    <div class="custom-control custom-checkbox "
+                                                        style="cursor: pointer;">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            id="agree_terms_minor" name="agree_terms_minor"
+                                                            style="cursor: pointer;">
+                                                        <label class="custom-control-label" for="agree_terms_minor"
+                                                            style="font-size: 10pt">Ako ay may pahintulot mula sa aking
+                                                            magulang o guardian na magpabakuna laban sa
+                                                            COVID-19.</label>
+                                                        <div class="invalid-feedback" id="e_consent_minor">Please fill
+                                                            out this field.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mb-2 ml-4 parent-name-div" style="display: none;">
+                                                    <label class="" style="font-size: 10pt">Parent Name</label>
+                                                    <input type="text" class="form-control" id="parent_name"
+                                                        style="text-transform:uppercase">
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-lg-3 text-left second-part">
+                                    <button type="button" class="btn btn-primary pl-5 pr-5 btn-block"
+                                        (click)="submit()"
+                                        [disabled]="!aFormGroup.valid">
+                                        Submit
+                                    </button>
+                                    <button type="button" class="btn btn-danger pl-5 pr-5 btn-block"
+                                    routerLink="/home">
+                                    Cancel
+                                </button>
+                              
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

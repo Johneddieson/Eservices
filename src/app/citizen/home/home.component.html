@@ -1,0 +1,247 @@
+<nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
+    <div class="container-fluid px-0">
+       <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
+          <div class="d-flex align-items-center">
+             <form class="navbar-search form-inline" id="navbar-search-main">
+                <div class="input-group input-group-merge search-bar"> 
+                   <img src="assets/tuguegaraocitylogo3.png" style=" width: 80px;
+                   height: 80px;"/> 
+                </div>
+             </form>
+          </div>
+          <ul class="navbar-nav align-items-center">
+             <li class="nav-item dropdown ms-lg-3">
+                <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <div class="media d-flex align-items-center">
+                      <img class="avatar rounded-circle" alt="Image placeholder" src="assets/img/profile-picture-3.jpg">
+                      <div class="media-body ms-2 text-dark align-items-center  d-lg-block"><span class="mb-0 font-small fw-bold text-gray-900">{{firstname}}</span></div>
+                   </div>
+                </a>
+                <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
+                   <a class="dropdown-item d-flex align-items-center" href="#">
+                      <!-- <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
+                      </svg> -->
+                      Edit Profile 
+                   </a>
+                
+                   <div role="separator" class="dropdown-divider my-1"></div>
+                   <a class="dropdown-item d-flex align-items-center" (click)="logout()">
+                      <!-- <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                      </svg> -->
+                      Logout
+                   </a>
+                </div>
+             </li>
+          </ul>
+       </div>
+    </div>
+ </nav>
+ <br>
+ <div class="row">
+    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+       <div class="card border-0 shadow" style="cursor: pointer;" routerLink="/vaxeasy">
+          <div class="card-body">
+             <div class="row d-block d-xl-flex align-items-center">
+                <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                    <!-- icon-shape-primary -->
+                    <div class="icon-shape rounded me-4 me-sm-0">
+                      <img src="assets/vaccine.png" 
+                      
+                      /> 
+                   </div>
+                   <div class="d-sm-none">
+                      <h2 class="h5">Tuguegarao</h2>
+                      <h3 class="fw-extrabold mb-1">VAX EASY</h3>
+                   </div>
+                </div>
+                <div class="col-12 col-xl-7 px-xl-0">
+                   <div class="d-none d-sm-block">
+                      <h2 class="h5">Tuguegarao</h2>
+                      <h3 class="fw-extrabold mb-1">VAX EASY</h3>
+                   </div>
+                   <small class="d-flex align-items-center">
+                    Register Vaccination Form    
+                   </small>
+                   <div class="small d-flex mt-1">
+                      <div>
+                        <span class="text-success fw-bolder me-1">For Tuguegarao Citizen Only</span>
+                    </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+       <div class="card border-0 shadow">
+          <div class="card-body">
+             <div class="row d-block d-xl-flex align-items-center">
+                <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                   <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
+                      <svg class="icon icon-md" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path>
+                      </svg>
+                   </div>
+                   <div class="d-sm-none">
+                      <h2 class="fw-extrabold h5">Revenue</h2>
+                      <h3 class="mb-1">$43,594</h3>
+                   </div>
+                </div>
+                <div class="col-12 col-xl-7 px-xl-0">
+                   <div class="d-none d-sm-block">
+                      <h2 class="h5">Revenue</h2>
+                      <h3 class="fw-extrabold mb-1">$43,594</h3>
+                   </div>
+                   <small class="d-flex align-items-center">
+                      Feb 1 - Apr 1, 
+                      <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"></path>
+                      </svg>
+                      SUA
+                   </small>
+                   <div class="small d-flex mt-1">
+                      <svg class="icon icon-xs text-danger" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                      </svg>
+                      <div><span class="text-danger fw-bolder me-1">2%</span> Since last month</div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+       <div class="card border-0 shadow">
+          <div class="card-body">
+             <div class="row d-block d-xl-flex align-items-center">
+                <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                   <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+                      <svg class="icon icon-md" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                      </svg>
+                   </div>
+                   <div class="d-sm-none">
+                      <h2 class="fw-extrabold h5">Bounce Rate</h2>
+                      <h3 class="mb-1">50.88%</h3>
+                   </div>
+                </div>
+                <div class="col-12 col-xl-7 px-xl-0">
+                   <div class="d-none d-sm-block">
+                      <h2 class="h5">Bounce Rate</h2>
+                      <h3 class="fw-extrabold mb-1">50.88%</h3>
+                   </div>
+                   <small>Feb 1 - Apr 1</small>
+                   <div class="small d-flex mt-1">
+                      <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                      </svg>
+                      <div><span class="text-success fw-bolder me-1">4%</span> Since last month</div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+        <div class="card border-0 shadow">
+           <div class="card-body">
+              <div class="row d-block d-xl-flex align-items-center">
+                 <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                    <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+                       <svg class="icon icon-md" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                       </svg>
+                    </div>
+                    <div class="d-sm-none">
+                       <h2 class="fw-extrabold h5">Bounce Rate</h2>
+                       <h3 class="mb-1">50.88%</h3>
+                    </div>
+                 </div>
+                 <div class="col-12 col-xl-7 px-xl-0">
+                    <div class="d-none d-sm-block">
+                       <h2 class="h5">Bounce Rate</h2>
+                       <h3 class="fw-extrabold mb-1">50.88%</h3>
+                    </div>
+                    <small>Feb 1 - Apr 1</small>
+                    <div class="small d-flex mt-1">
+                       <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                       </svg>
+                       <div><span class="text-success fw-bolder me-1">4%</span> Since last month</div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-12 col-sm-6 col-xl-4 mb-4">
+        <div class="card border-0 shadow">
+           <div class="card-body">
+              <div class="row d-block d-xl-flex align-items-center">
+                 <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                    <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+                       <svg class="icon icon-md" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                       </svg>
+                    </div>
+                    <div class="d-sm-none">
+                       <h2 class="fw-extrabold h5">Bounce Rate</h2>
+                       <h3 class="mb-1">50.88%</h3>
+                    </div>
+                 </div>
+                 <div class="col-12 col-xl-7 px-xl-0">
+                    <div class="d-none d-sm-block">
+                       <h2 class="h5">Bounce Rate</h2>
+                       <h3 class="fw-extrabold mb-1">50.88%</h3>
+                    </div>
+                    <small>Feb 1 - Apr 1</small>
+                    <div class="small d-flex mt-1">
+                       <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                       </svg>
+                       <div><span class="text-success fw-bolder me-1">4%</span> Since last month</div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-12 col-sm-6 col-xl-4 mb-4">
+        <div class="card border-0 shadow">
+           <div class="card-body">
+              <div class="row d-block d-xl-flex align-items-center">
+                 <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                    <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+                       <svg class="icon icon-md" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                       </svg>
+                    </div>
+                    <div class="d-sm-none">
+                       <h2 class="fw-extrabold h5">Bounce Rate</h2>
+                       <h3 class="mb-1">50.88%</h3>
+                    </div>
+                 </div>
+                 <div class="col-12 col-xl-7 px-xl-0">
+                    <div class="d-none d-sm-block">
+                       <h2 class="h5">Bounce Rate</h2>
+                       <h3 class="fw-extrabold mb-1">50.88%</h3>
+                    </div>
+                    <small>Feb 1 - Apr 1</small>
+                    <div class="small d-flex mt-1">
+                       <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                       </svg>
+                       <div><span class="text-success fw-bolder me-1">4%</span> Since last month</div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+ </div>
+
+
+
