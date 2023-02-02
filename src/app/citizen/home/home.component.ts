@@ -12,6 +12,7 @@ import { AuthServiceService } from 'src/app/auth-service.service';
 export class HomeComponent implements OnInit {
   firstname: string = ''
   lastname: string = ''
+  city: string = ''
   constructor(private afstore: AngularFirestore,
     private afauth: AngularFireAuth,
     private authService: AuthServiceService,
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
           var userobject = data as any
           this.firstname = userobject.firstname;
           this.lastname = userobject.lastname
+          this.city = userobject.city
         })
       }
     })
@@ -39,4 +41,15 @@ export class HomeComponent implements OnInit {
     //this.router.navigateByUrl('/')
   }
 
+  async goToVaxeasyPage() 
+  {
+    if (this.city != 'Alcala')
+    {
+      alert('Pasensiya na dahil hindi ka taga lungsod ng alcala para gamitin ang serbisyo na ito.')
+    }
+    else 
+    {
+      await this.router.navigateByUrl('/vaxeasy')
+    }
+  }
 }

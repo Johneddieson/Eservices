@@ -1,10 +1,10 @@
 <div id="page-content-wrapper">
     <div class="container-fluid p-1 bg-white">
         <div class="alert alert-danger" role="alert" id="notif-alert" *ngIf="error == true">Please fill all necessary fields. All fields with asterisk(*) are required.</div>
-        <div class="alert alert-danger" role="alert" id="notif-alert" *ngIf="underageMessage == true">The current Tuguegarao Vax Easy program only accepts individuals 5 years old and above. Please wait for further advise once the program is available to you.</div>
+        <div class="alert alert-danger" role="alert" id="notif-alert" *ngIf="underageMessage == true">The current Alcala Vax Easy program only accepts individuals 5 years old and above. Please wait for further advise once the program is available to you.</div>
         <form id="vax_easy_reg_form" class="needs-validation" [formGroup]="aFormGroup">
         <div class="card content-container m-4 p-5" style="min-height: 500px">
-            <h4 class="cc-title fi-case-initial" id="top_label"><strong>Tuguegarao Vax Easy Registration</strong></h4>
+            <h4 class="cc-title fi-case-initial" id="top_label"><strong>Alcala Vax Easy Registration</strong></h4>
             <div class="card-body" style="margin-top: 0rem; font-family: helvetica">
                 <div class="card" id="allforms" style="border-radius: 0px">
                     <div class="card-body p-3">
@@ -120,7 +120,7 @@
                                                     [(ngModel)]="phonenumber" formControlName="phonenumbervalue"
                                                     maxlength="11">
                                                     <p style="color: red;" *ngIf="f['phonenumbervalue'].errors && f['phonenumbervalue'].errors['required']">Shouldn't be empty.</p>   
-                                                    <p style="color: red;" *ngIf="f['phonenumbervalue'].errors && f['phonenumbervalue'].errors['pattern']">Numbers are not allowed</p>  
+                                                    <p style="color: red;" *ngIf="f['phonenumbervalue'].errors && f['phonenumbervalue'].errors['pattern']">Wrong format should be 09XXXXXXXXX</p>  
                                  
                                                 </div>
                                         </div>
@@ -267,55 +267,31 @@
                                         [(ngModel)]="occupationbarangay"  [ngModelOptions]="{standalone: true}"
                                         (change)="occupationbarangaynevent($event)">
                                         <option value="" selected="selected">-- Select Barangay -- </option>
-                                        <option value="Annafunan East">Annafunan East</option>
-                                        <option value="Annafunan West">Annafunan West</option>
-                                        <option value="Atulayan Norte">Atulayan Norte</option>
-                                        <option value="Atulayan Sur">Atulayan Sur</option>
-                                        <option value="Bagay">Bagay</option>
-                                        <option value="Buntun">Buntun</option>
-                                        <option value="Caggay">Caggay</option>
-                                        <option value="Capatan">Capatan</option>
-                                        <option value="Carig Norte (Reyes)">Carig Norte (Reyes)</option>
-                                        <option value="Carig Sur">Carig Sur</option>
-                                        <option value="Caritan Centro">Caritan Centro</option>
-                                        <option value="Caritan Norte">Caritan Norte</option>
-                                        <option value="Caritan Sur">Caritan Sur</option>
-                                        <option value="Cataggaman Nuevo">Cataggaman Nuevo</option>
-                                        <option value="Cataggaman Pardo">Cataggaman Pardo</option>
-                                        <option value="Cataggaman Viejo">Cataggaman Viejo</option>
-                                        <option value="Centro 01">Centro 01</option>
-                                        <option value="Centro 02">Centro 02</option>
-                                        <option value="Centro 03">Centro 03</option>
-                                        <option value="Centro 04">Centro 04</option>
-                                        <option value="Centro 05">Centro 05</option>
-                                        <option value="Centro 06">Centro 06</option>
-                                        <option value="Centro 07">Centro 07</option>
-                                        <option value="Centro 08">Centro 08</option>
-                                        <option value="Centro 09">Centro 09</option>
-                                        <option value="Centro 10">Centro 10</option>
-                                        <option value="Centro 11 (Balzain East)">Centro 11 (Balzain East)</option>
-                                        <option value="Centro 12 (Balzain West)">Centro 12 (Balzain West)</option>
-                                        <option value="Dadda">Dadda</option>
-                                        <option value="Gosi Norte">Gosi Norte</option>
-                                        <option value="Gosi Sur">Gosi Sur</option>
-                                        <option value="Larion Alto">Larion Alto</option>
-                                        <option value="Larion Bajo">Larion Bajo</option>
-                                        <option value="Leonarda">Leonarda</option>
-                                        <option value="Libag Norte">Libag Norte</option>
-                                        <option value="Libag Sur">Libag Sur</option>
-                                        <option value="Linao East">Linao East</option>
-                                        <option value="Linao Norte">Linao Norte</option>
-                                        <option value="Linao West">Linao West</option>
-                                        <option value="Namabbalan Norte">Namabbalan Norte</option>
-                                        <option value="Namabbalan Sur">Namabbalan Sur</option>
-                                        <option value="Pallua Norte">Pallua Norte</option>
-                                        <option value="Pallua Sur">Pallua Sur</option>
-                                        <option value="Pengue">Pengue</option>
-                                        <option value="San Gabriel">San Gabriel</option>
-                                        <option value="Tagga">Tagga</option>
-                                        <option value="Tanza">Tanza</option>
-                                        <option value="Ugac Norte">Ugac Norte</option>
-                                        <option value="Ugac Sur">Ugac Sur</option>
+                                        <option value="Abbeg">Abbeg</option>
+                                        <option value="Afusing Bato">Afusing Bato</option>
+                                        <option value="Afusing Daga">Afusing Daga</option>
+                                        <option value="Agani">Agani</option>
+                                        <option value="Baculod">Baculod</option>
+                                        <option value="Baybayog">Baybayog</option>
+                                        <option value="Cabuluan">Cabuluan</option>
+                                        <option value="Calantac">Calantac</option>
+                                        <option value="Carallangan">Carallangan</option>
+                                        <option value="Centro Norte (Poblacion)">Centro Norte (Poblacion)</option>
+                                        <option value="Centro Sur (Poblacion)">Centro Sur (Poblacion)</option>
+                                        <option value="Dalaoig">Dalaoig</option>
+                                        <option value="Damurog">Damurog</option>
+                                        <option value="Jurisdiction">Jurisdiction</option>
+                                        <option value="Malalatan">Malalatan</option>
+                                        <option value="Maraburab">Maraburab</option>
+                                        <option value="Masin">Masin</option>
+                                        <option value="Pagbangkeruan">Pagbangkeruan</option>
+                                        <option value="Pared">Pared</option>
+                                        <option value="Piggatan">Piggatan</option>
+                                        <option value="Pinopoc">Pinopoc</option>
+                                        <option value="Pussian">Pussian</option>
+                                        <option value="San Esteban">San Esteban</option>
+                                        <option value="Tamban">Tamban</option>
+                                        <option value="Tupang">Tupang</option>
                                     </select>
                                     <p style="color: red;" *ngIf="occupationbarangayempty == true">Shouldn't be empty.</p>
                                 </div>
@@ -572,12 +548,23 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-lg-3 text-left second-part">
-                                    <button type="button" class="btn btn-primary pl-5 pr-5 btn-block"
+                                    
+                                    <div class="alert alert-success" role="alert" *ngIf="showSuccessMessage">
+                                        You've registered successfully!
+                                      </div>
+
+                                    <div class="d-flex justify-content-center" *ngIf="showLoading">
+                                        <div class="spinner-border" role="status">
+                                        </div>
+                                      </div>
+
+                                    <button *ngIf="!hideSubmitAndCancelButton" type="button" class="btn btn-primary pl-5 pr-5 btn-block"
                                         (click)="submit()"
                                         [disabled]="!aFormGroup.valid">
                                         Submit
                                     </button>
-                                    <button type="button" class="btn btn-danger pl-5 pr-5 btn-block"
+
+                                    <button *ngIf="!hideSubmitAndCancelButton" type="button" class="btn btn-danger pl-5 pr-5 btn-block"
                                     routerLink="/home">
                                     Cancel
                                 </button>

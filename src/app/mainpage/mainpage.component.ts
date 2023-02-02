@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, NgZone, OnInit } from '@angular/core';
+import { ApplicationRef, Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -10,16 +10,19 @@ import { AuthServiceService } from '../auth-service.service';
   styleUrls: ['./mainpage.component.scss']
 })
 export class MainpageComponent implements OnInit {
+
 public continueas: string = ''
 public link: string = ''
 public isnull: boolean = false
 public email: string = ''
 public password: string = ''
+public hideLoginAndSignupButton: boolean = false;
   constructor( private router: Router,  private afstore: AngularFirestore,
     private afauth: AngularFireAuth,
     private applicationRef: ApplicationRef,
     private zone: NgZone,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+
     ) 
     {
       this.router.events.subscribe(() => {
@@ -45,7 +48,6 @@ public password: string = ''
           }, 0)
         })
       })
-
      }
 
   ngOnInit(): void {
@@ -58,17 +60,22 @@ this.authService.SignIn(this.email, this.password).then(el => {
     uid: el.user?.uid,
     email: el.user?.email
   }  
-console.log("success login", el)
-if (user.displayName === 'admin') 
-{
-  this.router.navigateByUrl('/adminhome')
-} else 
-{
-  this.router.navigateByUrl('/home')
-}
-localStorage.setItem('user', JSON.stringify(el.user));
+
+  this.hideLoginAndSignupButton = true
+  setTimeout(() => {
+    if (user.displayName === 'admin') 
+    {
+      this.router.navigateByUrl('/adminhome')
+    } else 
+    {
+      this.router.navigateByUrl('/home')
+    }
+    this.hideLoginAndSignupButton = false
+    localStorage.setItem('user', JSON.stringify(el.user));    
+  }, 3500);
+
 }).catch(err => {
-  console.log("error login", err)
+  alert(err.message)
 })
   }
 
