@@ -215,6 +215,7 @@ export class SignupComponent implements OnInit, OnChanges {
             barangay: this.aFormGroup.controls['barangaydropdown'].value,
             workingInTugue: this.isWorkingTugue,
             occupation: this.occupation === '' ? '' : this.occupation,
+            businesspermitlength: 0
             //password: this.aFormGroup.controls['password'].value
           })
             this.hideRegisterandCancelButton =  true
