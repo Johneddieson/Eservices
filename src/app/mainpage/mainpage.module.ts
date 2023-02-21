@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MainpageRoutingModule } from './mainpage-routing.module';
 import { MainpageComponent } from './mainpage.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     MainpageRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ]
 })
 export class MainpageModule { }

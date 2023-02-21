@@ -1,8 +1,10 @@
-import { ApplicationRef, Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { ApplicationRef, Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../auth-service.service';
+import {NgxSpinnerService, NgxSpinner} from 'ngx-spinner'
+
 
 @Component({
   selector: 'app-mainpage',
@@ -17,11 +19,15 @@ public isnull: boolean = false
 public email: string = ''
 public password: string = ''
 public hideLoginAndSignupButton: boolean = false;
+public showErrorAlert: boolean = false
+public imageError: string = ''
+public errMsg: string = ''
   constructor( private router: Router,  private afstore: AngularFirestore,
     private afauth: AngularFireAuth,
     private applicationRef: ApplicationRef,
     private zone: NgZone,
     private authService: AuthServiceService,
+    private spinner: NgxSpinnerService
 
     ) 
     {
@@ -50,18 +56,28 @@ public hideLoginAndSignupButton: boolean = false;
       })
      }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
+    // this.spinner.show().then(() => {
+
+    //   setTimeout(() => {
+    //     this.spinner.hide();
+    //   }, 5000);
+    // })
   }
   login() 
   {
+    this.showErrorAlert = true
+    this.spinner.show().then(() => {
+
+    })
 this.authService.SignIn(this.email, this.password).then(el => {
   const user = {
     displayName: el.user?.displayName,
     uid: el.user?.uid,
     email: el.user?.email
   }  
-
-  this.hideLoginAndSignupButton = true
+  this.showErrorAlert = true
+  
   setTimeout(() => {
     if (user.displayName === 'admin') 
     {
@@ -71,14 +87,47 @@ this.authService.SignIn(this.email, this.password).then(el => {
     {
       this.router.navigateByUrl('/home')
     }
-    this.hideLoginAndSignupButton = false
+    //this.hideLoginAndSignupButton = false
+    this.spinner.hide()
     localStorage.setItem('user', JSON.stringify(el.user));    
   }, 3500);
 
 }).catch(err => {
-  alert(err.message)
+  this.showErrorAlert = false
+  if (err.code == 'auth/wrong-password')
+  {
+    this.imageError = 'https://cdn-icons-png.flaticon.com/512/2976/2976592.png'
+    this.errMsg = err.message
+  }
+  else if (err.code == 'auth/user-not-found')
+  {
+    this.imageError = 'https://cdn-icons-png.flaticon.com/512/1804/1804190.png'
+    this.errMsg = err.message
+  }
+  else if (err.code == 'auth/invalid-email')
+  {
+    this.imageError = 'https://cdn-icons-png.flaticon.com/512/5220/5220262.png'
+    this.errMsg = err.message
+  }
+  else 
+  {
+    this.imageError = ''
+    this.errMsg = ''
+  }
+  // setTimeout(() => {
+  //   this.spinner.hide()
+    
+  // }, 3500);
+  
+  // setTimeout(() => {
+  //   alert(err.message)
+  // }, 4000);
 })
   }
 
+  hideSpinnerIfError()
+  {
+    this.spinner.hide()
+  }
 
 }
