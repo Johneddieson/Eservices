@@ -79,8 +79,8 @@ export class SignupComponent implements OnInit, OnChanges {
           this.aNumberPatternValid({pattern: /^([^0-9]*)$/, msg: 'A number' }),
           this.aLowerCasePatternValid({pattern: /^([^a-z]*)$/, msg: 'A lowercase' }),
           this.aUpperCasePatternValid({pattern: /^([^A-Z]*)$/, msg: 'A uppercase' }),
-          this.aMinimum8CharactersPatternValid({pattern: 'Minimum 8 characters', msg: 'Minimum 8 characters' }),
-          Validators.minLength(8)
+          //this.aMinimum8CharactersPatternValid({pattern: 'Minimum 8 characters', msg: 'Minimum 8 characters' }),
+          //Validators.minLength(8)
         ],
       ],
       termsofuse: [false, [Validators.requiredTrue]],
@@ -352,13 +352,10 @@ export class SignupComponent implements OnInit, OnChanges {
 
   //minimum of 8 character on password validation
   minimum8Characters: boolean = false
-  aMinimum8CharactersPatternValid(config: any): ValidatorFn | any
+  aMinimum8CharactersPatternValid(config: any)
   {
-    return (control: FormControl) => {
-      //console.log('wew', config);
-      let urlRegeX: RegExp = config.pattern;
-      
-     if (control.value.length >= 8)
+    const query = config.target.value;
+    if (query.length >= 8)
      {
       this.minimum8Characters = true
      }
@@ -366,11 +363,22 @@ export class SignupComponent implements OnInit, OnChanges {
      {
       this.minimum8Characters = false
      }
-    };
+    // return (control: FormControl) => {
+    //   let urlRegeX: RegExp = config.pattern;
+      
+    //  if (control.value.length >= 8)
+    //  {
+    //   this.minimum8Characters = true
+    //  }
+    //  else 
+    //  {
+    //   this.minimum8Characters = false
+    //  }
+    // };
   }
 
 
-  //if lives in alcala the barangay should be select option else input field function condition
+  //(if lives in alcala the barangay should be select option else input field) function condition
   istuguegaraocity(event: any) {
     const query = event.target.value.toLowerCase();
     if (query == 'alcala' || query == '') {
