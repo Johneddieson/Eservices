@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {AngularFireModule} from '@angular/fire'
@@ -8,12 +8,14 @@ import {AngularFirestoreModule} from '@angular/fire/firestore'
 import {HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     ReactiveFormsModule,
     NgxCaptchaModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyC5Ld66WFLsZscDZnozvMly2fAJ5uPh7jo',
@@ -26,6 +28,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     }),
     AngularFirestoreModule,
     HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

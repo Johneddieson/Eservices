@@ -13,6 +13,19 @@
             </div>
       </nav>
       
+      <ngx-spinner type="pacman">
+        <div *ngIf="showErrorAlert" class="lds-hourglass"></div>
+        <p *ngIf="showErrorAlert" class="loading">Logging in...</p>
+        
+        <div *ngIf="!showErrorAlert" class="container">
+          <div class="cookiesContent" id="cookiesPopup">
+            <!-- <button class="close">✖</button> -->
+            <img src="{{imageError}}" alt="cookies-img" />
+            <p>{{errMsg}}</p>
+            <button class="accept" (click)="hideSpinnerIfError()">That's fine!</button>
+          </div>
+        </div>
+      </ngx-spinner>
       <div *ngIf="isnull == true" class="data text-white text-center d-flex justify-content-center align-items-center h-75">
         <div>
             <h3 style="color: rgb(0, 0, 0); font-weight:bolder;">E-mail</h3>
@@ -24,15 +37,15 @@
             placeholder="Enter password" style="width: 245px;"
             [(ngModel)]="password" [ngModelOptions]="{standalone: true}"/>
             <br>
-            <button *ngIf="!hideLoginAndSignupButton" class="btn btn-success" (click)="login()">SIGN IN</button>
+            <button  class="btn btn-success" (click)="login()">SIGN IN</button>
            
-            <div *ngIf="hideLoginAndSignupButton" class="d-flex justify-content-center">
+            <!-- <div *ngIf="hideLoginAndSignupButton" class="d-flex justify-content-center">
               <div class="spinner-border" role="status">
               </div>
-            </div>
+            </div> -->
             <br>
             <br>
-            <button *ngIf="!hideLoginAndSignupButton" class="btn btn-warning" routerLink="signup">SIGN UP</button>
+            <button  class="btn btn-warning" routerLink="signup">SIGN UP</button>
         </div>
       </div>
 
