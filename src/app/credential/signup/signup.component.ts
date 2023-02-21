@@ -42,15 +42,20 @@ export class SignupComponent implements OnInit, OnChanges {
   public showLoading: boolean = false;
   public showSuccessMessage: boolean = false;
   public hideRegisterandCancelButton: boolean = false;
+  public showPassword: string = 'fa fa-eye'
+  public passwordType: string = 'password'
+  public confirmshowPassword: string = 'fa fa-eye'
+  public confirmpasswordType: string = 'password'
   constructor(private formBuilder: FormBuilder, private authService: AuthServiceService,
     private router: Router,  private afstore: AngularFirestore,
     private afauth: AngularFireAuth,
     private applicationRef: ApplicationRef,
     private zone: NgZone) {
+      // form validations
     this.aFormGroup = this.formBuilder.group({
       recaptcha: ['', [Validators.required]],
-      firstname: ['', [Validators.required, Validators.pattern(/^([^0-9]*)$/)]],
-      lastname: ['', [Validators.required, Validators.pattern(/^([^0-9]*)$/)]],
+      firstname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
+      lastname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       birthdate: ['', [Validators.required]],
       sex: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -61,7 +66,7 @@ export class SignupComponent implements OnInit, OnChanges {
           Validators.pattern(
             /^(09|63)[\d]{9}$/
           ),
-        ],
+          ],
       ],
       city: ['', [Validators.required]],
       street: ['', [Validators.required]],
@@ -70,7 +75,12 @@ export class SignupComponent implements OnInit, OnChanges {
         '',
         [
           Validators.required,
-          Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/),
+           Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/),
+          this.aNumberPatternValid({pattern: /^([^0-9]*)$/, msg: 'A number' }),
+          this.aLowerCasePatternValid({pattern: /^([^a-z]*)$/, msg: 'A lowercase' }),
+          this.aUpperCasePatternValid({pattern: /^([^A-Z]*)$/, msg: 'A uppercase' }),
+          this.aMinimum8CharactersPatternValid({pattern: 'Minimum 8 characters', msg: 'Minimum 8 characters' }),
+          Validators.minLength(8)
         ],
       ],
       termsofuse: [false, [Validators.requiredTrue]],
@@ -78,6 +88,7 @@ export class SignupComponent implements OnInit, OnChanges {
     });
 
     
+    // after logged in, if the user click the back browser button, this function will be invoked
     this.router.events.subscribe(() => {
       this.zone.run(() => {
         setTimeout(() => {
@@ -102,7 +113,7 @@ export class SignupComponent implements OnInit, OnChanges {
       })
     })
   }
-
+//signup, saved to the database
    signup() {
     if (this.aFormGroup.controls['email'].value !== this.confirmEmail) {
       this.asterisk =
@@ -204,7 +215,6 @@ export class SignupComponent implements OnInit, OnChanges {
             barangay: this.aFormGroup.controls['barangaydropdown'].value,
             workingInTugue: this.isWorkingTugue,
             occupation: this.occupation === '' ? '' : this.occupation,
-            
             //password: this.aFormGroup.controls['password'].value
           })
             this.hideRegisterandCancelButton =  true
@@ -233,15 +243,17 @@ export class SignupComponent implements OnInit, OnChanges {
       }
     }
   }
+  //form controls
   get f() {
+    //console.log(this.aFormGroup.controls)
     return this.aFormGroup.controls;
   }
   ngOnInit() {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('valid', changes);
   }
+  //check if the email and confirm email are the same event on confirm email input field
   compare(event: any) {
     const query = event.target.value;
     // if (query !== this.aFormGroup.controls['email'].value) {
@@ -253,6 +265,7 @@ export class SignupComponent implements OnInit, OnChanges {
     this.isMatchEmail =
       query !== this.aFormGroup.controls['email'].value ? false : true;
   }
+   //check if the email and confirm email are the same event on email input field
   compare2(event: any) {
     const query = event.target.value;
     // if (query !== this.aFormGroup.controls['email'].value) {
@@ -263,6 +276,8 @@ export class SignupComponent implements OnInit, OnChanges {
 
     this.isMatchEmail = query !== this.confirmEmail ? false : true;
   }
+
+  //check if the password and confirm password are the same event on confirm password input field
   comparepassword(event: any) {
     const query = event.target.value;
     // if (query !== this.aFormGroup.controls['password'].value) {
@@ -274,6 +289,7 @@ export class SignupComponent implements OnInit, OnChanges {
       query !== this.aFormGroup.controls['password'].value ? false : true;
   }
 
+  //check if the password and confirm password are the same event on password input field
   comparepassword2(event: any) {
     const query = event.target.value;
     // if (query !== this.aFormGroup.controls['password'].value) {
@@ -283,22 +299,78 @@ export class SignupComponent implements OnInit, OnChanges {
     // }
     this.isMatchPassword = query !== this.confirmPassword ? false : true;
   }
+  //captcha API Key
   siteKey: string = '6LfklZgjAAAAAAXtisIMsHtmhMIVVJteLEoVx_yj';
-
-  customPatternValid(config: any): ValidatorFn | any {
-    console.log('wew', config);
+  
+  //if there is a number in value password validation
+  thereisnumber: boolean = false
+    aNumberPatternValid(config: any): ValidatorFn | any {
     return (control: FormControl) => {
+      //console.log('wew', config);
       let urlRegeX: RegExp = config.pattern;
-      if (control.value && !control.value.match(urlRegeX)) {
-        return {
-          invalidMsg: config.msg,
-        };
+      if (control.value && !control.value.match(urlRegeX)) 
+      {
+        this.thereisnumber = true
+        
       } else {
-        return null;
+        this.thereisnumber = false
       }
     };
   }
 
+  //if there is an lowercase in value password validation
+  thereIsLowerCaseCharacters: boolean = false
+  aLowerCasePatternValid(config: any): ValidatorFn | any {
+    return (control: FormControl) => {
+      //console.log('wew', config);
+      let urlRegeX: RegExp = config.pattern;
+      if (control.value && !control.value.match(urlRegeX)) 
+      {
+        this.thereIsLowerCaseCharacters = true
+        
+      } else {
+        this.thereIsLowerCaseCharacters = false
+      }
+    };
+  }
+
+  //if there is an uppercase in value password validation
+  thereIsUpperCaseCharacters: boolean = false
+  aUpperCasePatternValid(config: any): ValidatorFn | any {
+    return (control: FormControl) => {
+      //console.log('wew', config);
+      let urlRegeX: RegExp = config.pattern;
+      if (control.value && !control.value.match(urlRegeX)) 
+      {
+        this.thereIsUpperCaseCharacters = true
+        
+      } else {
+        this.thereIsUpperCaseCharacters = false
+      }
+    };
+  }
+
+  //minimum of 8 character on password validation
+  minimum8Characters: boolean = false
+  aMinimum8CharactersPatternValid(config: any): ValidatorFn | any
+  {
+    return (control: FormControl) => {
+      //console.log('wew', config);
+      let urlRegeX: RegExp = config.pattern;
+      
+     if (control.value.length >= 8)
+     {
+      this.minimum8Characters = true
+     }
+     else 
+     {
+      this.minimum8Characters = false
+     }
+    };
+  }
+
+
+  //if lives in alcala the barangay should be select option else input field function condition
   istuguegaraocity(event: any) {
     const query = event.target.value.toLowerCase();
     if (query == 'alcala' || query == '') {
@@ -313,5 +385,18 @@ export class SignupComponent implements OnInit, OnChanges {
   async isvalid() {
     var isval = await this.aFormGroup.valid;
     return isval;
+  }
+
+  //password eye function
+  async password()
+  {
+    this.passwordType = await this.passwordType == 'text' ? 'password' : 'text'
+    this.showPassword = await this.showPassword == 'fa fa-eye' ? 'fa fa-eye-slash' : 'fa fa-eye'
+  }
+  //confirm password eye function
+  async conPassword()
+  {
+    this.confirmpasswordType = await this.confirmpasswordType == 'text' ? 'password' : 'text'
+    this.confirmshowPassword = await this.confirmshowPassword == 'fa fa-eye' ? 'fa fa-eye-slash' : 'fa fa-eye'
   }
 }

@@ -9,27 +9,25 @@ import {HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCaptchaModule } from 'ngx-captcha';
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     ReactiveFormsModule,
     NgxCaptchaModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyAAhuh4ZX2LOD_Ew-lp-w6zabaVKgpsFzM",
-      authDomain: "tugegaraoeservices.firebaseapp.com",
-      projectId: "tugegaraoeservices",
-      storageBucket: "tugegaraoeservices.appspot.com",
-      messagingSenderId: "636186004701",
-      appId: "1:636186004701:web:939b622ad15c4dcb40df34",
-      measurementId: "G-VRMS674SWP"
+      apiKey: 'AIzaSyC5Ld66WFLsZscDZnozvMly2fAJ5uPh7jo',
+      authDomain: 'alcalaeservices-26dd2.firebaseapp.com',
+      projectId: 'alcalaeservices-26dd2',
+      storageBucket: 'alcalaeservices-26dd2.appspot.com',
+      messagingSenderId: '99391754045',
+      appId: '1:99391754045:web:b726544dcd176b306cff54',
+      measurementId: 'G-BCW75EBM4V',
     }),
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
