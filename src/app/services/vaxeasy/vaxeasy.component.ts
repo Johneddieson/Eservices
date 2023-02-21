@@ -249,7 +249,8 @@ export class VaxeasyComponent implements OnInit, OnChanges {
       if (this.ezconsultnumber === '')
       {
           this.ezconsultnumberempty = true
-      } else 
+      } 
+      else 
       {
         this.ezconsultnumberempty = false
       }

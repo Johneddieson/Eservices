@@ -66,7 +66,8 @@ this.authService.SignIn(this.email, this.password).then(el => {
     if (user.displayName === 'admin') 
     {
       this.router.navigateByUrl('/adminhome')
-    } else 
+    } 
+    else 
     {
       this.router.navigateByUrl('/home')
     }
