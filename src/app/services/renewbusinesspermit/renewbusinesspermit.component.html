@@ -41,8 +41,12 @@
                                         <select name="int_modeOfPayment" class="form-select" id="int_modeOfPayment"
                                             formControlName="modeofpayment">
                                             <option value="" selected="selected">SELECT MODE OF PAYMENT</option>
-                                            <option *ngFor="let mode of modeOfPaymentList" [value]="mode.id">
-                                                {{mode.name}}</option>
+                                            <option value="" selected="selected">SELECT MODE OF PAYMENT</option>
+                                            <option value="ANUALLY">ANUALLY</option>
+                                            <option value="SEMI-ANUALLY">SEMI-ANUALLY</option>
+                                            <option value="QUARTERLY">QUARTERLY</option>
+                                            <!-- <option *ngFor="let mode of modeOfPaymentList" [value]="mode.id">
+                                                {{mode.name}}</option> -->
                                         </select>
                                         <p style="color: red;" *ngIf="f['modeofpayment'].errors && f['modeofpayment'].errors['required']">Shouldn't be empty.</p>      
                                             
@@ -120,8 +124,12 @@
                                         </label>
                                         <select name="int_modeOfPayment" class="form-select" formControlName="typeofbusiness">
                                             <option value="" selected="selected">SELECT TYPE OF BUSINESS</option>
-                                            <option *ngFor="let mode of typeOfBusinessList" [value]="mode.id">
-                                                {{mode.name}}</option>
+                                            <option value="COOPERATIVE">COOPERATIVE</option>
+                                            <option value="CORPORATION">CORPORATION</option>
+                                            <option value="PARTNERSHIP">PARTNERSHIP</option>
+                                            <option value="SINGLE">SINGLE</option>
+                                            <!-- <option *ngFor="let mode of typeOfBusinessList" [value]="mode.id">
+                                                {{mode.name}}</option> -->
                                         </select>
                                         <p style="color: red;" *ngIf="f['typeofbusiness'].errors && f['typeofbusiness'].errors['required']">Shouldn't be empty.</p>      
 
@@ -270,10 +278,10 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Business Address :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="businessaddress">
+                                        <p style="color: red;" *ngIf="f['businessaddress'].errors && f['businessaddress'].errors['required']">Shouldn't be empty.</p>      
+                                        <!-- <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>       -->
+                                        <p style="color: red;" *ngIf="f['businessaddress'].errors && f['businessaddress'].errors['minlength']">Minimum of 4 characters.</p>      
                            
                                 </div>
                                 <!-- End of Business Address -->
@@ -285,10 +293,10 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Business Postal Code :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="businesspostalcode">
+                                        <p style="color: red;" *ngIf="f['businesspostalcode'].errors && f['businesspostalcode'].errors['required']">Shouldn't be empty.</p>      
+                                        <!-- <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>       -->
+                                        <p style="color: red;" *ngIf="f['businesspostalcode'].errors && f['businesspostalcode'].errors['minlength']">Minimum of 4 characters.</p>      
                            
                                 </div>
                                 <!-- Business End of Postal Code -->
@@ -299,11 +307,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Business Email Address :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="businessemailaddress">
+                                        <p style="color: red;" *ngIf="f['businessemailaddress'].errors && f['businessemailaddress'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['businessemailaddress'].errors && f['businessemailaddress'].errors['email']">Wrong Format.</p>      
                                 </div>
                                 <!-- Business End of Email Address -->
 
@@ -313,11 +319,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Business Telephone No :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="businesstelephone">
+                                        <p style="color: red;" *ngIf="f['businesstelephone'].errors && f['businesstelephone'].errors['required']">Shouldn't be empty.</p>      
+                                
                                 </div>
                                 <!-- Business End of Telephone No -->
 
@@ -326,11 +330,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Business Mobile No :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="businessmobile">
+                                        <p style="color: red;" *ngIf="f['businessmobile'].errors && f['businessmobile'].errors['required']">Shouldn't be empty.</p>      
+                            
                                 </div>
                                 <!-- Business End of Mobile No -->
 
@@ -340,10 +342,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Owners Address :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="ownersaddress">
+                                        <p style="color: red;" *ngIf="f['ownersaddress'].errors && f['ownersaddress'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['ownersaddress'].errors && f['ownersaddress'].errors['minlength']">Minimum of 4 characters.</p>      
                            
                                 </div>
                                 <!-- Owners End of Business Address -->
@@ -355,10 +356,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Owners Postal Code :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="ownerspostalcode">
+                                        <p style="color: red;" *ngIf="f['ownerspostalcode'].errors && f['ownerspostalcode'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['ownerspostalcode'].errors && f['ownerspostalcode'].errors['minlength']">Minimum of 4 characters.</p>      
                            
                                 </div>
                                 <!-- Owners End of Postal Code -->
@@ -369,10 +369,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Owners Email Address :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="ownersemailaddress">
+                                        <p style="color: red;" *ngIf="f['ownersemailaddress'].errors && f['ownersemailaddress'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['ownersemailaddress'].errors && f['ownersemailaddress'].errors['email']">Wrong Format</p>      
                            
                                 </div>
                                 <!-- Owners End of Email Address -->
@@ -383,11 +382,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Owners Telephone No :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="ownerstelephone">
+                                        <p style="color: red;" *ngIf="f['ownerstelephone'].errors && f['ownerstelephone'].errors['required']">Shouldn't be empty.</p>      
+                              
                                 </div>
                                 <!-- Owners End of Telephone No -->
 
@@ -396,16 +393,14 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Owners Mobile No :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="ownersmobile">
+                                        <p style="color: red;" *ngIf="f['ownersmobile'].errors && f['ownersmobile'].errors['required']">Shouldn't be empty.</p>      
                            
                                 </div>
                                 <!-- Owners End of Mobile No -->
 
 
-                                <!-- Owners End of Business Address -->
+                                <!-- Owners End of Address -->
 
 
 
@@ -414,10 +409,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> In case of emergency, provide name and contact person:
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="incaseofemergencyperson">
+                                        <p style="color: red;" *ngIf="f['incaseofemergencyperson'].errors && f['incaseofemergencyperson'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['incaseofemergencyperson'].errors && f['incaseofemergencyperson'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
                            
                                 </div>
                                 <!-- End of In case of emergency, provide name and contact person: -->
@@ -428,10 +422,8 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Telephone / Mobile No :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="incaseofemergencypersontelephonenumber">
+                                        <p style="color: red;" *ngIf="f['incaseofemergencypersontelephonenumber'].errors && f['incaseofemergencypersontelephonenumber'].errors['required']">Shouldn't be empty.</p>      
                            
                                 </div>
                                 <!-- End of Telephone / Mobile No  -->
@@ -442,11 +434,10 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span>Email Address :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="incaseofemergencypersonemail">
+                                        <p style="color: red;" *ngIf="f['incaseofemergencypersonemail'].errors && f['incaseofemergencypersonemail'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['incaseofemergencypersonemail'].errors && f['incaseofemergencypersonemail'].errors['email']">Wrong Format</p>      
+                              
                                 </div>
                                 <!-- End of Email Address -->
 
@@ -455,10 +446,8 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Business Area (in sq m) :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="incaseofemergencypersonbusinessarea">
+                                        <p style="color: red;" *ngIf="f['incaseofemergencypersonbusinessarea'].errors && f['incaseofemergencypersonbusinessarea'].errors['required']">Shouldn't be empty.</p>      
                            
                                 </div>
                                 <!-- End of Business Area (in sq m) -->
@@ -469,11 +458,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Gross/Sales Receipts :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="grossreceipt">
+                                        <p style="color: red;" *ngIf="f['grossreceipt'].errors && f['grossreceipt'].errors['required']">Shouldn't be empty.</p>      
+                              
                                 </div>
                                 <!-- End of Gross/Sales Receipts -->
 
@@ -486,11 +473,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Male :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="totalnumberofmale">
+                                        <p style="color: red;" *ngIf="f['totalnumberofmale'].errors && f['totalnumberofmale'].errors['required']">Shouldn't be empty.</p>      
+                              
                                 </div>
                                 <!-- End of Male -->
 
@@ -499,11 +484,9 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Female :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="totalnumberoffemale">
+                                        <p style="color: red;" *ngIf="f['totalnumberoffemale'].errors && f['totalnumberoffemale'].errors['required']">Shouldn't be empty.</p>      
+                                
                                 </div>
                                 <!-- End of Female -->
 
@@ -516,10 +499,8 @@
                                 </div>
                                    <div class="col-xl-2 mt-2">
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="numberofemployeeslgu">
+                                        <p style="color: red;" *ngIf="f['numberofemployeeslgu'].errors && f['numberofemployeeslgu'].errors['required']">Shouldn't be empty.</p>      
                                 </div>
                                 <!-- No. of Employees Residing within LGU -->
 
@@ -533,11 +514,8 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Lessor's Full Name :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="lessorsfullname">
+                            
                                 </div>
                                 <!-- End of Lessor's Full Name  -->
 
@@ -546,11 +524,8 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Lessor's Address :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="lessorsaddress">
+                              
                                 </div>
                                 <!-- End of Lessor's Address  -->
 
@@ -559,10 +534,7 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Lessor's Tel/Mobile No. :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="lessorstelorphone">
                            
                                 </div>
                                 <!-- End of Lessor's Telephone /Mobile No.  -->
@@ -572,11 +544,8 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Lessor's Email Address :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
-                           
+                                        formControlName="lessorsemail">
+                               
                                 </div>
                                 <!-- End of Lessor's Email Address  -->
                                 
@@ -585,10 +554,7 @@
                                     <h6> <span class="text-danger"><strong>*</strong></span> Monthly Rental :
                                     </h6>
                                     <input type="text" class="form-control regex_house_no" id="txt_barangay"
-                                        formControlName="tradenamefranchise">
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
-                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                                        formControlName="monthlyrental">
                            
                                 </div>
                                 <!-- End of Monthly Rental  -->
