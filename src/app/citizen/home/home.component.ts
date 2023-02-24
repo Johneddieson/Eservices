@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/auth-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,13 @@ export class HomeComponent implements OnInit {
   firstname: string = ''
   lastname: string = ''
   city: string = ''
+  public businesspermitlength: number = 0
+  public theresnoAlreadyBusinessPermit: boolean = false
   constructor(private afstore: AngularFirestore,
     private afauth: AngularFireAuth,
     private authService: AuthServiceService,
-    private router: Router) 
+    private router: Router,
+    private spinner: NgxSpinnerService) 
   {
     this.afauth.authState.subscribe(data => {
       if(data != null)
@@ -27,13 +31,26 @@ export class HomeComponent implements OnInit {
           this.firstname = userobject.firstname;
           this.lastname = userobject.lastname
           this.city = userobject.city
+          this.businesspermitlength = userobject.businesspermitlength
+          if (this.businesspermitlength == 0)
+          {
+            this.theresnoAlreadyBusinessPermit = true
+          }
+          else 
+          {
+            this.theresnoAlreadyBusinessPermit = false
+          }
         })
+        
       }
     })
   }
 
   ngOnInit(): void {
-    //console.log("Wew", JSON.parse(localStorage.getItem('user') as any))
+    // this.authService.getAllUsers().subscribe(data => 
+    //   {
+    //     console.log("users from sql", data)
+    //   })
   }
   logout() {
      this.authService.SignOut()

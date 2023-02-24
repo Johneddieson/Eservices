@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth'
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore'
@@ -11,7 +13,8 @@ export class AuthServiceService {
   constructor(public afs: AngularFirestore,   // Inject Firestore service
   public afAuth: AngularFireAuth, // Inject Firebase auth service
   public router: Router,  
-  public ngZone: NgZone) {
+  public ngZone: NgZone,
+  private http: HttpClient) {
 
      /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -46,4 +49,8 @@ export class AuthServiceService {
     })
   }
 
+  // getAllUsers(): Observable<any>
+  // {
+  //   return this.http.get("http://localhost:3000/api/users/getUser");
+  // }
 }

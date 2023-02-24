@@ -51,6 +51,20 @@ const routes: Routes = [
       import('./services/vaxeasy/vaxeasy.module').then((m) => m.VaxeasyModule),
     canActivate: [AuthguardGuard],
   },
+  { 
+    path: 'ApplyBusinessPermit', 
+    loadChildren: () => 
+    import('./services/createbusinesspermit/createbusinesspermit.module')
+    .then(m => m.CreatebusinesspermitModule),
+    canActivate: [AuthguardGuard], 
+  
+  },
+  { path: 'RenewBusinessPermit', 
+  loadChildren: () => 
+  import('./services/renewbusinesspermit/renewbusinesspermit.module').then(m => m.RenewbusinesspermitModule), 
+  canActivate: [AuthguardGuard],
+},
+    
 ];
 
 @NgModule({

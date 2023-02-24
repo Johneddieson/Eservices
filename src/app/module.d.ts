@@ -1,0 +1,1 @@
+declare module '@ng-plus/signature-pad';

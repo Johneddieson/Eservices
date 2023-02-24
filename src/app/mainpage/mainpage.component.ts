@@ -54,7 +54,20 @@ public errMsg: string = ''
           }, 0)
         })
       })
-     }
+     
+    
+        this.afauth.authState.subscribe(data => {
+          if (data != null)
+          {
+            this.afstore.doc(`users/${data.uid}`).valueChanges()
+        .subscribe(data => {
+          var userobject = data as any
+          var firstname = userobject.firstname
+        })
+          }
+        })
+    
+    }
 
    ngOnInit(): void {
     // this.spinner.show().then(() => {
