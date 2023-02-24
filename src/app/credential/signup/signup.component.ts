@@ -10,6 +10,7 @@ import {
 import { AuthServiceService } from 'src/app/auth-service.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Registerusermodel } from 'src/app/interface/registerusermodel';
 
 @Component({
   selector: 'app-signup',
@@ -54,8 +55,8 @@ export class SignupComponent implements OnInit, OnChanges {
       // form validations
     this.aFormGroup = this.formBuilder.group({
       recaptcha: ['', [Validators.required]],
-      firstname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-      lastname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
+      firstname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]],
+      lastname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]],
       birthdate: ['', [Validators.required]],
       sex: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -114,7 +115,7 @@ export class SignupComponent implements OnInit, OnChanges {
     })
   }
 //signup, saved to the database
-   signup() {
+   async signup() {
     if (this.aFormGroup.controls['email'].value !== this.confirmEmail) {
       this.asterisk =
         (this.aFormGroup.controls['city'].value === 'Others' &&
@@ -180,67 +181,68 @@ export class SignupComponent implements OnInit, OnChanges {
         this.emailNotMatch = true;
         this.passwordNotMatch = true;
         this.asterisk = true;
-        this.authService.SignUp
-        (this.aFormGroup.controls['email'].value, this.aFormGroup.controls['password'].value)
-        .then(el => {
-          const user = {
-            displayName: el.user?.displayName,
-            uid: el.user?.uid,
-            email: el.user?.email
-          }  
+        await this.signupFunction()
+        // this.authService.SignUp
+        // (this.aFormGroup.controls['email'].value, this.aFormGroup.controls['password'].value)
+        // .then(el => {
+        //   const user = {
+        //     displayName: el.user?.displayName,
+        //     uid: el.user?.uid,
+        //     email: el.user?.email
+        //   }  
           
-          user.displayName = 'citizen'
-          el.user?.updateProfile({
-            displayName: 'citizen'
-          }).then(el2 => {
+        //   user.displayName = 'citizen'
+        //   el.user?.updateProfile({
+        //     displayName: 'citizen'
+        //   }).then(el2 => {
 
-          }).catch(err2 => {
-            console.log("err update display name", err2)
-          })
+        //   }).catch(err2 => {
+        //     console.log("err update display name", err2)
+        //   })
           
         
-          this.afstore.doc(`users/${el.user?.uid}`).set({
-            uid: user.uid,
-            firstname: this.aFormGroup.controls['firstname'].value,
-            lastname: this.aFormGroup.controls['lastname'].value,
-            middlename: this.middlename === '' ? '' : this.middlename,
-            suffix: this.suffix === '' ? '' : this.suffix,
-            birthdate: this.aFormGroup.controls['birthdate'].value,
-            sex: this.aFormGroup.controls['sex'].value,
-            email: this.aFormGroup.controls['email'].value,
-            number: this.aFormGroup.controls['phonenumber'].value,
-            city: this.aFormGroup.controls['city'].value === 'Others' ? this.city : this.aFormGroup.controls['city'].value,
-            housenumber: this.housenumber === '' ? '' : this.housenumber,
-            street: this.aFormGroup.controls['street'].value,
-            barangay: this.aFormGroup.controls['barangaydropdown'].value,
-            workingInTugue: this.isWorkingTugue,
-            occupation: this.occupation === '' ? '' : this.occupation,
-            businesspermitlength: 0
-            //password: this.aFormGroup.controls['password'].value
-          })
-            this.hideRegisterandCancelButton =  true
-            this.showLoading = true;
+        //   this.afstore.doc(`users/${el.user?.uid}`).set({
+        //     uid: user.uid,
+        //     firstname: this.aFormGroup.controls['firstname'].value,
+        //     lastname: this.aFormGroup.controls['lastname'].value,
+        //     middlename: this.middlename === '' ? '' : this.middlename,
+        //     suffix: this.suffix === '' ? '' : this.suffix,
+        //     birthdate: this.aFormGroup.controls['birthdate'].value,
+        //     sex: this.aFormGroup.controls['sex'].value,
+        //     email: this.aFormGroup.controls['email'].value,
+        //     number: this.aFormGroup.controls['phonenumber'].value,
+        //     city: this.aFormGroup.controls['city'].value === 'Others' ? this.city : this.aFormGroup.controls['city'].value,
+        //     housenumber: this.housenumber === '' ? '' : this.housenumber,
+        //     street: this.aFormGroup.controls['street'].value,
+        //     barangay: this.aFormGroup.controls['barangaydropdown'].value,
+        //     workingInTugue: this.isWorkingTugue,
+        //     occupation: this.occupation === '' ? '' : this.occupation,
+        //     businesspermitlength: 0
+        //     //password: this.aFormGroup.controls['password'].value
+        //   })
+        //     this.hideRegisterandCancelButton =  true
+        //     this.showLoading = true;
            
-            setTimeout(() => {
-              this.showLoading = false
-              this.showSuccessMessage = true
-            }, 3000);
+        //     setTimeout(() => {
+        //       this.showLoading = false
+        //       this.showSuccessMessage = true
+        //     }, 3000);
             
-            setTimeout(() => {
-              this.showSuccessMessage = false
-              this.aFormGroup.reset()
-              localStorage.setItem('user', JSON.stringify(el.user));
-              this.router.navigateByUrl('home');
-              this.hideRegisterandCancelButton = false
-            }, 5000);
+        //     setTimeout(() => {
+        //       this.showSuccessMessage = false
+        //       this.aFormGroup.reset()
+        //       localStorage.setItem('user', JSON.stringify(el.user));
+        //       this.router.navigateByUrl('home');
+        //       this.hideRegisterandCancelButton = false
+        //     }, 5000);
             
-        }).catch(err => {
-          //Error alert
-            console.log("err", err);
-            this.iserror = true
-            this.emailAlreadyInusedErrorMessage = err.message
-            window.scrollTo(0, 0);
-        })
+        // }).catch(err => {
+        //   //Error alert
+        //     console.log("err", err);
+        //     this.iserror = true
+        //     this.emailAlreadyInusedErrorMessage = err.message
+        //     window.scrollTo(0, 0);
+        // })
       }
     }
   }
@@ -407,5 +409,62 @@ export class SignupComponent implements OnInit, OnChanges {
   {
     this.confirmpasswordType = await this.confirmpasswordType == 'text' ? 'password' : 'text'
     this.confirmshowPassword = await this.confirmshowPassword == 'fa fa-eye' ? 'fa fa-eye-slash' : 'fa fa-eye'
+  }
+
+
+  async signupFunction()
+  {
+  var object = {
+    firstname: this.aFormGroup.controls['firstname'].value,
+    lastname: this.aFormGroup.controls['lastname'].value,
+    middlename: this.middlename === '' ? '' : this.middlename,
+    suffix: this.suffix === '' ? '' : this.suffix,
+    birthdate: this.aFormGroup.controls['birthdate'].value,
+    sex: this.aFormGroup.controls['sex'].value,
+    email: this.aFormGroup.controls['email'].value,
+    number: this.aFormGroup.controls['phonenumber'].value,
+    city: this.aFormGroup.controls['city'].value === 'Others' ? this.city : this.aFormGroup.controls['city'].value,
+    housenumber: this.housenumber === '' ? '' : this.housenumber,
+    street: this.aFormGroup.controls['street'].value,
+    barangay: this.aFormGroup.controls['barangaydropdown'].value,
+    workingInAlcala: this.isWorkingTugue,
+    occupation: this.occupation === '' ? '' : this.occupation,
+    businesspermitlength: 0,
+    password: this.aFormGroup.controls['password'].value,
+    role: "citizen"
+  }; 
+ 
+    await this.authService.register(object).subscribe(data => 
+      {
+        //console.log("Register user response", data)
+        if (data.success == 1)
+        {
+          var idObj = 
+          {
+            id: parseInt(data.data.insertId),
+            displayName: object.role
+          }
+          
+            this.hideRegisterandCancelButton =  true
+            this.showLoading = true;
+           
+            setTimeout(() => {
+              this.showLoading = false
+              this.showSuccessMessage = true
+            }, 3000);
+            
+            setTimeout(() => {
+              this.showSuccessMessage = false
+              this.aFormGroup.reset()
+              localStorage.setItem('user', JSON.stringify(idObj));
+              this.router.navigateByUrl('home');
+              this.hideRegisterandCancelButton = false
+            }, 5000);
+        }
+        else 
+        {
+
+        }
+      })
   }
 }

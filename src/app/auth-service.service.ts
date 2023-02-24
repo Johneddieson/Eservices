@@ -4,6 +4,7 @@ import { Injectable, NgZone } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth'
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore'
 import { Router } from '@angular/router';
+import { Registerusermodel } from './interface/registerusermodel';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,10 @@ export class AuthServiceService {
 
      /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-      } 
-    })
+    // this.afAuth.authState.subscribe(user => {
+    //   if (user) {
+    //   } 
+    // })
    }
 
     // Sign in with email/password
@@ -53,4 +54,43 @@ export class AuthServiceService {
   // {
   //   return this.http.get("http://localhost:3000/api/users/getUser");
   // }
+
+
+  //sql queries
+login(objects: any): Observable<any>
+{
+  return this.http.post("http://localhost:3000/users/login", objects);
+}
+register(userObject: any): Observable<any>
+{
+  return this.http.post("http://localhost:3000/users/createuser", userObject);
+}
+getUserById(id: any): Observable<any>
+{
+  return this.http.get(`http://localhost:3000/users/getuserById/${id}`)
+}
+createBusinessPermitForNew(object: any): Observable<any>
+{
+  return this.http.post(`http://localhost:3000/businesspermit/create`, object);
+}
+createLineofBusinessForNew(object: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/createlineofbusiness`, object);
+}
+
+createAmendment(object: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/createamendment`, object);
+}
+
+createBasicInformation(object: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/createbasicinformation`, object);
+}
+
+createOtherInformation(object: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/createotherinformation`, object);
+}
+
 }

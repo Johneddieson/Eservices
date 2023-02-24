@@ -41,8 +41,11 @@
                                         <select name="int_modeOfPayment" class="form-select" id="int_modeOfPayment"
                                             formControlName="modeofpayment">
                                             <option value="" selected="selected">SELECT MODE OF PAYMENT</option>
-                                            <option *ngFor="let mode of modeOfPaymentList" [value]="mode.id">
-                                                {{mode.name}}</option>
+                                            <option value="ANUALLY">ANUALLY</option>
+                                            <option value="SEMI-ANUALLY">SEMI-ANUALLY</option>
+                                            <option value="QUARTERLY">QUARTERLY</option>
+                                            <!-- <option *ngFor="let mode of modeOfPaymentList" [value]="mode.id">
+                                                {{mode.name}}</option> -->
                                         </select>
                                         <p style="color: red;" *ngIf="f['modeofpayment'].errors && f['modeofpayment'].errors['required']">Shouldn't be empty.</p>      
                                             
@@ -120,8 +123,12 @@
                                         </label>
                                         <select name="int_modeOfPayment" class="form-select" formControlName="typeofbusiness">
                                             <option value="" selected="selected">SELECT TYPE OF BUSINESS</option>
-                                            <option *ngFor="let mode of typeOfBusinessList" [value]="mode.id">
-                                                {{mode.name}}</option>
+                                            <option value="COOPERATIVE">COOPERATIVE</option>
+                                            <option value="CORPORATION">CORPORATION</option>
+                                            <option value="PARTNERSHIP">PARTNERSHIP</option>
+                                            <option value="SINGLE">SINGLE</option>
+                                            <!-- <option *ngFor="let mode of typeOfBusinessList" [value]="mode.id">
+                                                {{mode.name}}</option> -->
                                         </select>
                                         <p style="color: red;" *ngIf="f['typeofbusiness'].errors && f['typeofbusiness'].errors['required']">Shouldn't be empty.</p>      
 
