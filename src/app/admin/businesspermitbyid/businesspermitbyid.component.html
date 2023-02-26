@@ -254,10 +254,10 @@
                                 <!-- End of Trade Name / Franchise -->
                                 
                                 <!-- Other Information -->
-                                <div class="col-lg-12 mt-4 mb-2">
+                                <div class="col-lg-12 mt-4 mb-2" *ngIf="createNewBusinessPermitFormGroup.controls['type'].value == 'Renew'">
                                     <h4 style="font-weight: bold;">2. Other Information</h4>
                                 </div>
-
+                                        <div class="row" *ngIf="createNewBusinessPermitFormGroup.controls['type'].value == 'Renew'">
                                   <!-- Business Address -->
                                   <div class="col-xl-12 mt-2">
                                     <h6> <span class="text-danger"><strong>*</strong></span> Business Address :
@@ -322,8 +322,6 @@
                                 </div>
                                 <!-- Owners End of Business Address -->
 
-
-
                                   <!-- Owners Postal Code -->
                                   <div class="col-xl-3 mt-2">
                                     <h6> <span class="text-danger"><strong>*</strong></span>Owners Postal Code :
@@ -368,8 +366,6 @@
 
 
                                 <!-- Owners End of Address -->
-
-
 
                                   <!-- In case of emergency, provide name and contact person: -->
                                   <div class="col-xl-12 mt-2">
@@ -517,9 +513,8 @@
                                 <!-- End of Monthly Rental  -->
 
                                 <!-- End of Note: Fill up only if Business Place is Rented -->
-
-
                                 <!-- End of Other Information -->
+                            </div>
                                 <div class="col-lg-12 mt-4 mb-2">
                                     <h4 style="font-weight: bold;">3. Business Activity</h4>
                                 </div>

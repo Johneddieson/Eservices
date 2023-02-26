@@ -531,10 +531,6 @@ constructor(private authService: AuthServiceService,
 
   async refreshCountries() {
   
-	this.spinner.show().then(() => 
-	{
-
-	})
     var objectToFilter = await 
     {
       datefromfilter:  moment(this.datefromfilter).format("MM-DD-YYYY"),
@@ -558,20 +554,28 @@ constructor(private authService: AuthServiceService,
 		this.authService.businesspermitlistfilter(objectToFilter).subscribe(data => 
       {
         console.log("business permit list", data.data)
-        this.collectionSize = data.data.length
-        this.countries = data.data.map((country: any, i: number) => ({ id: i + 1, ...country })).slice(
-          (this.page - 1) * this.pageSize,
-          (this.page - 1) * this.pageSize + this.pageSize,
-        );
-
-		setTimeout(() => {
+		if (data.success == 1)
+		{
+			this.collectionSize = data.data.length
+			this.countries = data.data.map((country: any, i: number) => ({ id: i + 1, ...country })).slice(
+			  (this.page - 1) * this.pageSize,
+			  (this.page - 1) * this.pageSize + this.pageSize,
+			);
 			this.spinner.hide()
-		}, 3000);
+			// setTimeout(() => {
+			// 	this.spinner.hide()
+			// }, 3000);
+		}
+       
       })
 	}
 
   async searchBusinessPermit()
   {
+	this.spinner.show().then(() => 
+	{
+
+	})
     await this.refreshCountries()
   }
 

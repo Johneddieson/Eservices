@@ -422,6 +422,7 @@ constructor(private actRoute: ActivatedRoute,
         
         console.log("business permitid", data.data[0])
         var businesspermitData = data.data[0]
+        // this.createNewBusinessPermitFormGroup.controls['type'].value
         this.createNewBusinessPermitFormGroup.controls['type'].setValue(businesspermitData.Type)
         this.createNewBusinessPermitFormGroup.controls['signatureofapplicant'].setValue(businesspermitData.ApplicantSignature)
         this.userid = data.data[0].UserId
