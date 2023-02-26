@@ -64,6 +64,16 @@ const routes: Routes = [
   import('./services/renewbusinesspermit/renewbusinesspermit.module').then(m => m.RenewbusinesspermitModule), 
   canActivate: [AuthguardGuard],
 },
+  { 
+    path: 'businesspermit/list', 
+    loadChildren: () => import('./admin/businesspermitlist/businesspermitlist.module').then(m => m.BusinesspermitlistModule),
+    canActivate: [AuthguardGuard],
+  },
+  { 
+    path: 'businesspermit/:id', 
+    loadChildren: () => import('./admin/businesspermitbyid/businesspermitbyid.module').then(m => m.BusinesspermitbyidModule), 
+    canActivate: [AuthguardGuard],
+  },
     
 ];
 

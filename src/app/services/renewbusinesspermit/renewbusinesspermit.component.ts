@@ -49,6 +49,34 @@ export class RenewbusinesspermitComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private alertService: AlertService) 
   { 
+    var userToken = localStorage.getItem('user')
+  if (userToken != null || userToken || userToken != undefined)
+  {
+    var parseUserToken = JSON.parse(userToken);
+
+     this.authService.getUserById(parseUserToken.id).subscribe(data => 
+      {
+        console.log("users from sql", data)
+        if (data.success == 1)
+        {
+          this.firstname = data.data[0].firstname;
+          this.lastname = data.data[0].lastname
+          this.city = data.data[0].city
+        
+          if(data.data[0].businesspermitlength == 0)
+          {
+            this.theresnoAlreadyBusinessPermit = true
+            this.router.navigateByUrl('/home')
+          }
+          else 
+          {
+            this.theresnoAlreadyBusinessPermit = false
+          }
+        }
+      })
+  }
+
+
     this.createNewBusinessPermitFormGroup = this.formBuilder.group({
       modeofpayment: [
         '', 

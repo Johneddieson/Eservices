@@ -50,10 +50,7 @@ export class AuthServiceService {
     })
   }
 
-  // getAllUsers(): Observable<any>
-  // {
-  //   return this.http.get("http://localhost:3000/api/users/getUser");
-  // }
+  
 
 
   //sql queries
@@ -77,20 +74,63 @@ createLineofBusinessForNew(object: any): Observable<any>
 {
   return this.http.post(`http://localhost:3000/businesspermit/createlineofbusiness`, object);
 }
-
 createAmendment(object: any): Observable<any> 
 {
   return this.http.post(`http://localhost:3000/businesspermit/createamendment`, object);
 }
-
 createBasicInformation(object: any): Observable<any> 
 {
   return this.http.post(`http://localhost:3000/businesspermit/createbasicinformation`, object);
 }
-
 createOtherInformation(object: any): Observable<any> 
 {
   return this.http.post(`http://localhost:3000/businesspermit/createotherinformation`, object);
 }
+totalPendings(): Observable<any> 
+{
+  return this.http.get(`http://localhost:3000/businesspermit/totalpendings`);
+}
+businesspermitlist(): Observable<any> 
+{
+  return this.http.get(`http://localhost:3000/businesspermit/businesspermitlist`);
+}
+businesspermitlistfilter(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/businesspermitlistfilter`, obj);
+}
+getBusinessPermitById(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/getBusinessPermitById`, obj);
+}
+getAmendmentByBusinessPermitId(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/getAmendmentByBusinessPermitId`, obj);
+}
+getBasicInformationByBusinessPermitId(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/getBasicInformationByBusinessPermitId`, obj);
+}
+getLineofBusinessByBusinessPermitId(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/getLineofBusinessByBusinessPermitId`, obj);
+}
 
+getotherInformationByBusinessPermitId(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/getotherInformationByBusinessPermitId`, obj);
+}
+updateBusinessPermitStatus(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/updateBusinessPermitStatus`, obj);
+}
+
+getUsersById(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/getUsersById`, obj);
+}
+
+updateUsersBusinessPermitlength(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/updateUsersBusinessPermitlength`, obj);
+}
 }

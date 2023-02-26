@@ -1,0 +1,127 @@
+// .get_in_touch 
+// {
+//     max-width: 800px;
+//     margin: 50px auto;
+//     position: relative;
+//     box-shadow: 0 10px 30px 0px rgba(0,0,0,0.1);
+//     padding: 30px;
+// }
+
+// .get_in_touch .title
+// {
+//     text-transform: uppercase;
+//     text-align: center;
+//     letter-spacing: 3px;
+//     font-size: 3em;
+//     line-height: 48px;
+//     padding-bottom: 20px;
+//     color: #5543ca;
+//     background: linear-gradient(to right, #f4524d 0%, #5543ca 100%);
+//     background-clip: text;
+//     -webkit-text-fill-color: transparent;
+// }
+
+// .contact-form .form-field 
+// {
+//     position: relative;
+//     margin: 32px 0;
+// }
+
+// .contact-form .input-text
+// {
+//     display: block;
+//     width: 100%;
+//     height: 36px;
+//     border-width: 0 0 2px 0;
+//     border-color: #5543ca;
+//     font-size: 18px;
+//     line-height: 26px;
+//     font-weight: 400;
+// }
+
+// .contact-form .input-text:focus
+// {
+//     outline: none;
+// }
+// .contact-form .label
+// {
+//     position: absolute;
+//     left: 20px;
+//     bottom: 11px;
+//     font-size: 18px;
+//     line-height: 26px;
+//     font-weight: 400;
+//     color: #5543ca;
+//     cursor: text;
+//     transition: transform 0.2s ease-in-out;
+// }
+
+
+
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 250px;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+
+    .tablebody:hover 
+    {
+        background-color: rgb(213, 22, 22);
+        color: whitesmoke;
+        
+        
+    }
+
+
+    .tablebody:active 
+    {
+        background-color: rgb(45, 128, 187);
+        color: black;
+        
+    }
+    
+
+
+
+
+    
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+  @keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }

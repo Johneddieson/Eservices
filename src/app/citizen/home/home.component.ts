@@ -75,7 +75,17 @@ async getUser()
         {
           this.firstname = data.data[0].firstname;
           this.lastname = data.data[0].lastname
-          this.city = data.data.city
+          this.city = data.data[0].city
+        
+          if(data.data[0].businesspermitlength == 0)
+          {
+            this.theresnoAlreadyBusinessPermit = true
+            this.router.navigateByUrl('/home')
+          }
+          else 
+          {
+            this.theresnoAlreadyBusinessPermit = false
+          }
         }
       })
   }
