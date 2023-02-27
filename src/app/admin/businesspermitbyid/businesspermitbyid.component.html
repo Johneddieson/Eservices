@@ -1,11 +1,77 @@
 <div id="page-content-wrapper">
-    <!-- <ngx-spinner  type="pacman">
-        <div class="lds-facebook"><div></div><div></div><div></div></div>
+    <ngx-spinner  type="pacman">
+        <div class="lds-circle"><div></div></div>
         <p class="loading">Submitting...</p>
-    </ngx-spinner> -->
-    <!-- <ngx-alerts></ngx-alerts> -->
-    <div class="container-fluid p-1 bg-white">
-       
+    </ngx-spinner>
+    <ngx-alerts></ngx-alerts>
+
+    <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="exampleModal"
+    >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Send some remarks why you want to reject this
+                    application
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form   >
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Applicant Email:</label>
+                        <input type="email" name="email" class="form-control" value="{{applicantEmail}}" 
+                        required disabled>
+                      </div>
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label">Remarks:</label>
+                      <textarea name="Remarks" class="form-control" id="message-text" [(ngModel)]="remarks"
+                      required>
+
+                      </textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- (click)="rejectBusinessPermit()" -->
+                  <button type="submit" class="btn btn-success" (click)="rejectBusinessPermit()">Submit</button>
+                </div>
+            </form>
+              </div>
+        </div>
+      </div>
+      
+      <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="approvedApplication"
+    >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Fill up the date field to set an appointment
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form   >
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Applicant Email:</label>
+                        <input type="email" name="email" class="form-control" value="{{applicantEmail}}" 
+                        required disabled>
+                      </div>
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label">Date:</label>
+                      <input name="Remarks" type="date" class="form-control" id="message-text" [(ngModel)]="dateAppointment"
+                      required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- (click)="rejectBusinessPermit()" -->
+                  <button type="submit" class="btn btn-success" (click)="approveBusinessPermit()">Submit</button>
+                </div>
+            </form>
+              </div>
+        </div>
+      </div>
+
+    
+    <div class="container-fluid p-1 bg-white">   
         <form id="vax_easy_reg_form" class="needs-validation" [formGroup]="createNewBusinessPermitFormGroup">
             <div class="card content-container m-4 p-5" style="min-height: 500px">
                 <h4 class="cc-title fi-case-initial" id="top_label"><strong>Applicant : {{applicantFullname}}</strong></h4>
@@ -619,19 +685,24 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <!-- <div class="col-lg-12 text-left second-part"> -->
-
-                                        <div class="col-lg-1">
-
+                                        <div class="col-lg-1" *ngIf="status == 'Approved'">
                                             <button type="button" class="btn btn-success pl-5 pr-5 btn-block"
-                                            (click)="approveBusinessPermit()">
+                                            >
+                                                Print
+                                            </button>
+                                        </div>
+
+                                        <div class="col-lg-1" *ngIf="status == 'Pending'">
+                                            <button type="button" class="btn btn-success pl-5 pr-5 btn-block"
+                                            (click)="showApproveModal()">
                                                 Approve
                                             </button>
                                         </div>
 
                                         
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-4" *ngIf="status == 'Pending'">
                                             <button type="button" class="btn btn-danger pl-5 pr-5 btn-block"
-                                            (click)="rejectBusinessPermit()">
+                                            (click)="showRejectModal()">
                                             Reject
                                         </button>
                                         </div>

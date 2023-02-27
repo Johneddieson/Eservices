@@ -133,4 +133,9 @@ updateUsersBusinessPermitlength(obj: any): Observable<any>
 {
   return this.http.post(`http://localhost:3000/businesspermit/updateUsersBusinessPermitlength`, obj);
 }
+
+sendGridEmail(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/sendGridEmail`, obj);
+}
 }
