@@ -11,9 +11,11 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularSignaturePadModule } from '@almothafar/angular-signature-pad';
 import { AlertModule } from 'ngx-alerts';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    NgbModule,
     AlertModule.forRoot({ timeout: 1000, positionX: 'right', positionY: 'top'}),
     AngularSignaturePadModule,
     ReactiveFormsModule,

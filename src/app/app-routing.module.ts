@@ -74,6 +74,16 @@ const routes: Routes = [
     loadChildren: () => import('./admin/businesspermitbyid/businesspermitbyid.module').then(m => m.BusinesspermitbyidModule), 
     canActivate: [AuthguardGuard],
   },
+  { 
+    path: 'changepassword', 
+    loadChildren: () => import('./settings/changepassword/changepassword.module').then(m => m.ChangepasswordModule), 
+    canActivate: [AuthguardGuard],
+  },
+  { 
+    path: 'editprofile', 
+    loadChildren: () => import('./settings/editprofile/editprofile.module').then(m => m.EditprofileModule), 
+    canActivate: [AuthguardGuard],
+  },
     
 ];
 

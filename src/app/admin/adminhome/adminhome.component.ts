@@ -9,7 +9,7 @@ import { AuthServiceService } from 'src/app/auth-service.service';
 @Component({
   selector: 'app-adminhome',
   templateUrl: './adminhome.component.html',
-  styleUrls: ['./adminhome.component.scss']
+  styleUrls: ['./adminhome.component.scss'],
 })
 export class AdminhomeComponent implements OnInit {
   firstname: string = ''
@@ -133,4 +133,13 @@ async getUser()
       })
   }
 
+  async alertNavLink()
+  {
+    alert("tanga ka")
+  }
+
+  async changePassword()
+  {
+    await this.router.navigateByUrl('/changepassword')
+  }
 }

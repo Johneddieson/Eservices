@@ -108,4 +108,9 @@ async getUser()
       await this.router.navigateByUrl('/vaxeasy')
     }
   }
+
+  async changePassword()
+  {
+    await this.router.navigateByUrl('/changepassword')
+  }
 }

@@ -551,12 +551,7 @@ dateAppointment: string = ''
               //console.log("send grid", data)
               if (data.success == 1)
               {
-                setTimeout(() => {
-                  this.spinner.hide();
-                  this.alertService.success('Business permit rejected successfully!');
-                  this.realtime.next(this.getBusinessPermit())
-                    this.formModal.hide()
-                }, 1000);  
+                
               }
               else 
               {
@@ -564,6 +559,12 @@ dateAppointment: string = ''
                 this.spinner.hide();
               }
             })
+            setTimeout(() => {
+              this.spinner.hide();
+              this.alertService.success('Business permit rejected successfully!');
+              this.realtime.next(this.getBusinessPermit())
+                this.formModal.hide()
+            }, 1000);  
         } 
         else 
         {
@@ -597,7 +598,6 @@ dateAppointment: string = ''
           }
           await this.authService.sendGridEmail(objForSendEmail).subscribe(async data => 
             {
-             
               //console.log("send grid", data)
               if (data.success == 1)
               {
@@ -611,14 +611,7 @@ dateAppointment: string = ''
                         {
                           alert(data.message)
                         }
-                  })
-
-                setTimeout(() => {
-                  this.spinner.hide();
-                  this.alertService.success('Business permit approved successfully!');
-                  this.realtime.next(this.getBusinessPermit())
-                    this.formModalApproved.hide()
-                }, 1000);  
+                  }) 
               }
               else 
               {
@@ -626,12 +619,20 @@ dateAppointment: string = ''
                 this.spinner.hide();
               }
             })
+
+            setTimeout(() => {
+              this.spinner.hide();
+              this.alertService.success('Business permit approved successfully!');
+              this.realtime.next(this.getBusinessPermit())
+                this.formModalApproved.hide()
+            }, 1000); 
         } 
         else 
         {
           this.alertService.danger(data.message);
         }
       });
+      
      
     }
   }

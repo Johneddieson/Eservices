@@ -138,4 +138,12 @@ sendGridEmail(obj: any): Observable<any>
 {
   return this.http.post(`http://localhost:3000/businesspermit/sendGridEmail`, obj);
 }
+changeUserPassword(obj: any): Observable<any>
+{
+  return this.http.post(`http://localhost:3000/users/changeUserPassword`, obj)
+}
+updateProfileInformation(obj: any): Observable<any>
+{
+  return this.http.post(`http://localhost:3000/users/updateProfileInformation`, obj)
+}
 }

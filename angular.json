@@ -107,7 +107,8 @@
               "src/styles.scss"
               
             ],
-            "scripts": []
+            "scripts": 
+            []
           }
         }
       }
