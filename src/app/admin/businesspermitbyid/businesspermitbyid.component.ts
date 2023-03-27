@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { AuthServiceService } from 'src/app/auth-service.service';
 import { Component, OnInit, NgModule } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'ngx-alerts';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -29,17 +29,20 @@ export class BusinesspermitbyidComponent implements OnInit {
   closeResult: string = '';
   formModal: any;
   formModalApproved: any;
+  rescheduleAppointment: any;
+  public AppointmentSchedule: string = ''
 dateAppointment: string = ''
   constructor(
     private actRoute: ActivatedRoute,
     private authService: AuthServiceService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) 
   {
     this.businesspermitId = this.actRoute.snapshot.paramMap.get('id');
-
+    
     this.createNewBusinessPermitFormGroup = this.formBuilder.group({
       type: [''],
       modeofpayment: ['', [Validators.required]],
@@ -199,12 +202,17 @@ dateAppointment: string = ''
     (
       document.getElementById("approvedApplication")
     )
+    this.rescheduleAppointment = new window.bootstrap.Modal
+    (
+      document.getElementById("rescheduleAppointmentApplication")
+    )
   }
   async getBusinessPermit() {
     var obj = {
       id: this.businesspermitId,
     };
     await this.authService.getBusinessPermitById(obj).subscribe((data) => {
+      //AppointmentSchedule
       //console.log('business permitid', data.data[0]);
       var businesspermitData = data.data[0];
       // this.createNewBusinessPermitFormGroup.controls['type'].value
@@ -221,6 +229,8 @@ dateAppointment: string = ''
       this.getAmendment(businesspermitData.BusinessPermitId);
       this.otherInformation(businesspermitData.BusinessPermitId);
       this.lineOfBusiness(businesspermitData.BusinessPermitId);
+      this.AppointmentSchedule = businesspermitData.AppointmentSchedule
+      console.log("appointmentschedule", this.AppointmentSchedule)
     });
   }
   async getuserById(userid: any) {
@@ -575,7 +585,9 @@ dateAppointment: string = ''
     }
   }
   async approveBusinessPermit() {
-    var converted = moment(this.dateAppointment).format('LL')
+    var converted = moment(this.dateAppointment).format('LL');
+    var converted2 = moment(this.dateAppointment).format('YYYY-MM-DD');
+    var dateapproved = moment(new Date()).format('YYYY-MM-DD');
     if (this.dateAppointment == '' || this.dateAppointment == undefined || this.dateAppointment == null)
     {
         alert("Date shouldn't be empty")
@@ -586,6 +598,8 @@ dateAppointment: string = ''
       var obj = {
         businesspermitid: this.businesspermitId,
         status: 'Approved',
+        appointmentschedule: converted2,
+        dateapproved: dateapproved
       };
       await this.authService.updateBusinessPermitStatus(obj).subscribe(async (data) => 
       {
@@ -594,7 +608,16 @@ dateAppointment: string = ''
           {
             to: this.applicantEmail,
             subject: "Your business permit application has been approved",
-            text: `Please come to city hall on ${converted} for some required informations, Thank you!`
+            text: `Please come to city hall on ${converted} for some required informations, Thank you!`,
+            html: `Please come to city hall on ${converted} for some required informations, Thank you!
+            <br>
+            <h5>Type :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['type'].value}</p>
+            <br>
+            <h5>Taxpayer/Registrant Fullname :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['taxpayerfirstname'].value} ${this.createNewBusinessPermitFormGroup.controls['taxpayermiddlename'].value} ${this.createNewBusinessPermitFormGroup.controls['taxpayerlastname'].value}</p>
+            <br>
+            <h5>Business Name :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['taxpayerbusinessname'].value}</p>
+            <br>
+            <h5>Trade Name / Franchise :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['tradenamefranchise'].value}</p>`
           }
           await this.authService.sendGridEmail(objForSendEmail).subscribe(async data => 
             {
@@ -645,5 +668,69 @@ dateAppointment: string = ''
   {
     await  this.formModalApproved.show()
   }
+  async showReschedAppointmentModal()
+  {
+    await this.rescheduleAppointment.show();
+  }
+  async editScheduleAppointment()
+{
+  if (this.AppointmentSchedule == '' || this.AppointmentSchedule == undefined || this.AppointmentSchedule == null)
+  {
+      alert("Date shouldn't be empty")
+  }
+  else 
+  {
+    var converted2 = moment(this.AppointmentSchedule).format('YYYY-MM-DD');
+    this.spinner.show().then(() => {});
+    var obj = {
+      businesspermitid: this.businesspermitId,
+      appointmentschedule: converted2,
+      
+    };
+    this.authService.updateBusinessPermitAppointmentSchedule(obj).subscribe(async data => 
+      {
+        if (data.success == 1)
+        {
+          let objForSendEmail = 
+          {
+            to: this.applicantEmail,
+            subject: "Your business permit application has been rescheduled",
+            text: `Please come to city hall on ${converted2} for some required informations, Thank you!`,
+            html: `Please come to city hall on ${converted2} for some required informations, Thank you!
+            <br>
+            <h5>Type :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['type'].value}</p>
+            <br>
+            <h5>Taxpayer/Registrant Fullname :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['taxpayerfirstname'].value} ${this.createNewBusinessPermitFormGroup.controls['taxpayermiddlename'].value} ${this.createNewBusinessPermitFormGroup.controls['taxpayerlastname'].value}</p>
+            <br>
+            <h5>Business Name :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['taxpayerbusinessname'].value}</p>
+            <br>
+            <h5>Trade Name / Franchise :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['tradenamefranchise'].value}</p>`
+          }
+          await this.authService.sendGridEmail(objForSendEmail).subscribe(async data => 
+            {
+              //console.log("send grid", data)
+              if (data.success == 1)
+              { 
+              }
+            })
+            setTimeout(() => {
+              this.spinner.hide();
+              this.alertService.success('Business permit rescheduled successfully!');
+              this.realtime.next(this.getBusinessPermit())
+                this.rescheduleAppointment.hide()
+            }, 1000);
+            
+        }
+        else 
+        {
+          this.alertService.danger(data.message);
+        }
+      })
+  }
+}
 
+printoutNewTab()
+{
+  window.open(window.location.href.replace(this.router.url,"") + "/printout/" + this.applicantEmail, '_blank')
+}
 }

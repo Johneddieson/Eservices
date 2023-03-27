@@ -84,6 +84,12 @@ const routes: Routes = [
     loadChildren: () => import('./settings/editprofile/editprofile.module').then(m => m.EditprofileModule), 
     canActivate: [AuthguardGuard],
   },
+  { 
+    path: 'printout/:applicantemail', 
+    loadChildren: () => import('./admin/businesspermitbyidprintout/businesspermitbyidprintout.module')
+    .then(m => m.BusinesspermitbyidprintoutModule), 
+    canActivate: [AuthguardGuard]  
+  },
     
 ];
 

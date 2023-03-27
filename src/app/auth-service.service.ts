@@ -146,4 +146,8 @@ updateProfileInformation(obj: any): Observable<any>
 {
   return this.http.post(`http://localhost:3000/users/updateProfileInformation`, obj)
 }
+updateBusinessPermitAppointmentSchedule(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/updateBusinessPermitAppointmentSchedule`, obj);
+}
 }
