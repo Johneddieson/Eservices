@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { AlertService } from 'ngx-alerts';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthServiceService } from 'src/app/auth-service.service';
+import * as moment from 'moment';
+declare var window: any;
 @Component({
   selector: 'app-businesspermitbyidprintout',
   templateUrl: './businesspermitbyidprintout.component.html',
@@ -81,9 +88,27 @@ public FireSafetyPENALTYorSURCHARGE: any
 public FireSafetyTotal: any
 
 public isFinalizing: boolean = false
-  constructor() { }
+public email: any
+alertModal: any;
+  constructor(
+    private actRoute: ActivatedRoute,
+    private authService: AuthServiceService,
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService,
+    private alertService: AlertService,
+  ) 
+  {
+
+    this.email = this.actRoute.snapshot.paramMap.get('applicantemail');
+    this.email = this.email.split("_")
+    console.log("email", this.email)
+   }
 
   ngOnInit(): void {
+    this.alertModal = new window.bootstrap.Modal
+    (
+      document.getElementById("exampleModal")
+    )
 
     // setTimeout(() => {
     //     this.finalize()
@@ -101,7 +126,19 @@ public isFinalizing: boolean = false
   }
   public convetToPDF()
 {
-var data = document.getElementById('sample') as any;
+  this.spinner.show().then(() => {})
+  this.alertModal.hide()
+  this.isFinalizing = true
+
+  setTimeout(() => 
+  {
+    this.spinner.hide().then(() => {})
+  }, 3000)
+
+setTimeout(() => 
+{
+  
+  var data = document.getElementById('sample') as any;
 html2canvas(data).then(canvas => {
 // Few necessary setting options
 var imgWidth = 208;
@@ -114,7 +151,34 @@ let pdf = new jspdf.jsPDF('p', 'mm', 'legal'); // A4 size page of PDF
 var position = 0;
 // pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
 pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, 353.2186805040771)
-pdf.save('new-file.pdf'); // Generated PDF
+pdf.save(`${this.email[0]}businesspermit.pdf`); // Generated PDF
+this.updateDateApproved()
 });
+}, 5000)
 }
+showAlert()
+{
+  this.alertModal.show()
+}
+hideAlert()
+{
+  this.alertModal.hide()
+}
+updateDateApproved()
+{
+  var obj = 
+  {
+    dateapproved: moment(new Date()).format("YYYY-MM-DD"),
+    businesspermitid: this.email[1]
+  }
+  this.authService.updateBusinessPermitDateApproved(obj).subscribe((data) => 
+  {
+    if (data.success == 0)
+    {
+      alert(JSON.stringify(data))
+    }
+    
+  })
+}
+
 }

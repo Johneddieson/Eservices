@@ -1,5 +1,31 @@
 
 <div class="table-container" id="sample">
+
+    <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="exampleModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Send some remarks why you want to reject this
+                    application
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to export this to pdf?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="convetToPDF()">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideAlert()">No</button>
+                  </div>
+            
+              </div>
+        </div>
+      </div>
+      <ngx-spinner  type="pacman">
+        <div class="lds-spinner"><div></div><div></div><div></div><div>
+        </div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <p class="loading">Converting...</p>
+    </ngx-spinner>
     <!-- <h1 class="heading">Responsive Tables</h1> -->
     <table class="table">
         <thead>
@@ -813,6 +839,18 @@
 
         </tbody>
     </table>
+</div>
 
-
+<div class="card-footer">
+    <div class="row">
+        <!-- <div class="col-lg-12 text-left second-part"> -->
+            <div class="col-lg-3 col-sm-3 col-md-3">
+                <button type="button" class="btn btn-success pl-5 pr-5 btn-block"
+                (click)="showAlert()">
+                    Export to PDF
+                </button>
+            </div>
+        <!-- </div> -->
+    </div>
+    
 </div>

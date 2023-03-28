@@ -102,12 +102,12 @@
                       </div>
                     <div class="mb-3">
                       <label for="message-text" class="col-form-label">Date:</label>
-                      <input name="Remarks" type="date" class="form-control" id="message-text" [(ngModel)]="AppointmentSchedule"
+                      <input [disabled]="DateApproved != 'NONE'" name="Remarks" type="date" class="form-control" id="message-text" [(ngModel)]="AppointmentSchedule"
                       required />
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-success" (click)="editScheduleAppointment()">Save Change</button>
+                  <button [hidden]="DateApproved != 'NONE'" type="submit" class="btn btn-success" (click)="editScheduleAppointment()">Save Change</button>
                 </div>
             </form>
               </div>

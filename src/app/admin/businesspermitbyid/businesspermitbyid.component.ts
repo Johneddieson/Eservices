@@ -32,6 +32,7 @@ export class BusinesspermitbyidComponent implements OnInit {
   rescheduleAppointment: any;
   public AppointmentSchedule: string = ''
 dateAppointment: string = ''
+DateApproved: string = ''
   constructor(
     private actRoute: ActivatedRoute,
     private authService: AuthServiceService,
@@ -194,6 +195,10 @@ dateAppointment: string = ''
 
   ngOnInit(): void {
     this.getBusinessPermit();
+    setInterval(() => 
+    {
+      this.getBusinessPermit();
+    }, 5000)
     this.formModal = new window.bootstrap.Modal
     (
       document.getElementById("exampleModal")
@@ -213,9 +218,11 @@ dateAppointment: string = ''
     };
     await this.authService.getBusinessPermitById(obj).subscribe((data) => {
       //AppointmentSchedule
-      //console.log('business permitid', data.data[0]);
+      console.log('business permitid', data.data[0]);
       var businesspermitData = data.data[0];
+      //DateApproved
       // this.createNewBusinessPermitFormGroup.controls['type'].value
+      this.DateApproved = businesspermitData.DateApproved
       this.createNewBusinessPermitFormGroup.controls['type'].setValue(
         businesspermitData.Type
       );
@@ -694,7 +701,7 @@ dateAppointment: string = ''
           let objForSendEmail = 
           {
             to: this.applicantEmail,
-            subject: "Your business permit application has been rescheduled",
+            subject: "Your approved business permit application has been rescheduled",
             text: `Please come to city hall on ${converted2} for some required informations, Thank you!`,
             html: `Please come to city hall on ${converted2} for some required informations, Thank you!
             <br>
@@ -731,6 +738,6 @@ dateAppointment: string = ''
 
 printoutNewTab()
 {
-  window.open(window.location.href.replace(this.router.url,"") + "/printout/" + this.applicantEmail, '_blank')
+  window.open(window.location.href.replace(this.router.url,"") + "/printout/" + this.applicantEmail + `_${this.businesspermitId}`, '_blank')
 }
 }

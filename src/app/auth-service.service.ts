@@ -150,4 +150,8 @@ updateBusinessPermitAppointmentSchedule(obj: any): Observable<any>
 {
   return this.http.post(`http://localhost:3000/businesspermit/updateBusinessPermitAppointmentSchedule`, obj);
 }
+updateBusinessPermitDateApproved(obj: any): Observable<any> 
+{
+  return this.http.post(`http://localhost:3000/businesspermit/updateBusinessPermitDateApproved`, obj);
+}
 }
