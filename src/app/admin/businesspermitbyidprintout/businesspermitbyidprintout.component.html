@@ -1,0 +1,856 @@
+
+<div class="table-container" id="sample">
+
+    <div class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="exampleModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Send some remarks why you want to reject this
+                    application
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to export this to pdf?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="convetToPDF()">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hideAlert()">No</button>
+                  </div>
+            
+              </div>
+        </div>
+      </div>
+      <ngx-spinner  type="pacman">
+        <div class="lds-spinner"><div></div><div></div><div></div><div>
+        </div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <p class="loading">Converting...</p>
+    </ngx-spinner>
+    <!-- <h1 class="heading">Responsive Tables</h1> -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th><span>II. LGU SECTION</span></th>
+            </tr>
+        </thead>
+
+        
+        <thead>
+            <tr>
+                <th><span>‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎  1. VERIFICATION OF DOCUMENTS</span></th>
+            </tr>
+        </thead>
+        
+        <thead>
+            <tr>
+                <th style="text-align: center;
+                border-left: 1px solid #010107; border-right: 1px solid #010107;">Description</th>
+                <th style="text-align: center;
+                border-left: 1px solid #010107; border-right: 1px solid #010107;">Office/Agency</th>
+                <th style="text-align: center;
+                border-left: 1px solid #010107; border-right: 1px solid #010107;">Yes</th>
+                <th style="text-align: center;
+                border-left: 1px solid #010107; border-right: 1px solid #010107;">No</th>
+                <th style="text-align: center;
+                border-left: 1px solid #010107; border-right: 1px solid #010107;">Not needed</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #010107;">Occupancy Permit (For New)
+                </td>
+                <td style="border: 1px solid #010107;">Office of the Building Official
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="OccupancyYescheckbox"/>
+                    <span *ngIf="isFinalizing && OccupancyYescheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !OccupancyYescheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="OccupancyNocheckbox"/>
+                    <span *ngIf="isFinalizing && OccupancyNocheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !OccupancyNocheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="OccupancyNotNeededcheckbox"/>
+                    <!-- ✔️ -->
+                    <span *ngIf="isFinalizing && OccupancyNotNeededcheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !OccupancyNotNeededcheckbox"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">Barangay Business Clearance
+                </td>
+                <td style="border: 1px solid #010107;">Barangay
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="BarangayYescheckbox"/>
+                    <span *ngIf="isFinalizing && BarangayYescheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !BarangayYescheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="BarangayNocheckbox"/>
+                    <span *ngIf="isFinalizing && BarangayNocheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !BarangayNocheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="BarangayNotNeededcheckbox"/>
+                    <!-- ✔️ -->
+                    <span *ngIf="isFinalizing && BarangayNotNeededcheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !BarangayNotNeededcheckbox"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #010107;">Sanitary Permit/Health Clearance
+                </td>
+                <td style="border: 1px solid #010107;">Municipal Health Office
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="SanitaryYescheckbox"/>
+                    <span *ngIf="isFinalizing && SanitaryYescheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !SanitaryYescheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="SanitaryNocheckbox"/>
+                    <span *ngIf="isFinalizing && SanitaryNocheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !SanitaryNocheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="SanitaryNotNeededcheckbox"/>
+                    <!-- ✔️ -->
+                    <span *ngIf="isFinalizing && SanitaryNotNeededcheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !SanitaryNotNeededcheckbox"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">Valid Fire Safety Inspection Clearance
+                </td>
+                <td style="border: 1px solid #010107;">Bureau of Fire Protection
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="ValidYescheckbox"/>
+                    <span *ngIf="isFinalizing && ValidYescheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !ValidYescheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="ValidNocheckbox"/>
+                    <span *ngIf="isFinalizing && ValidNocheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !ValidNocheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="ValidNotNeededcheckbox"/>
+                    <!-- ✔️ -->
+                    <span *ngIf="isFinalizing && ValidNotNeededcheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !ValidNotNeededcheckbox"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #010107;">Municipal Environment Certificate
+                </td>
+                <td style="border: 1px solid #010107;">Mun. Env. and Nat. Resource Office
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="MunicipalYescheckbox"/>
+                    <span *ngIf="isFinalizing && MunicipalYescheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !MunicipalYescheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="MunicipalNocheckbox"/>
+                    <span *ngIf="isFinalizing && MunicipalNocheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !MunicipalNocheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="MunicipalNotNeededcheckbox"/>
+                    <!-- ✔️ -->
+                    <span *ngIf="isFinalizing && MunicipalNotNeededcheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !MunicipalNotNeededcheckbox"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #010107;">Lease of Contract if lessee
+                </td>
+                <td style="border: 1px solid #010107;">
+                    <!-- <input type="text"/> -->
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="LeaseYescheckbox"/>
+                    <span *ngIf="isFinalizing && LeaseYescheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !LeaseYescheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="LeaseNocheckbox"/>
+                    <span *ngIf="isFinalizing && LeaseNocheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !LeaseNocheckbox"></span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="checkbox"
+                    [(ngModel)]="LeaseNotNeededcheckbox"/>
+                    <!-- ✔️ -->
+                    <span *ngIf="isFinalizing && LeaseNotNeededcheckbox">✔️</span>
+                    <span *ngIf="isFinalizing && !LeaseNotNeededcheckbox"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">
+                    ㅤㅤㅤㅤㅤㅤㅤ ㅤㅤㅤㅤㅤㅤㅤ
+                    <!-- <input type="text"/> -->
+                </td>
+                <td style="border: 1px solid #010107;">
+                    
+                    <!-- <input type="text"/> -->
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <!-- <input type="checkbox"/> -->
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <!-- <input type="checkbox"/> -->
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <!-- <input type="checkbox"/> -->
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">
+                    OTHERS: Specify
+                </td>
+                <td style="border: 1px solid #010107;">
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <!-- <input type="checkbox"/> -->
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <!-- <input type="checkbox"/> -->
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <!-- <input type="checkbox"/> -->
+                </td>
+            </tr>
+
+
+            <tr>
+                <td style="border-bottom: 1px solid #010107;
+                border-left: 1px solid #010107;">
+                </td>
+                <td style="border-bottom: 1px solid #010107;">
+                </td>
+                <td style="border-bottom: 1px solid #010107;">
+         
+                </td>
+                <td style="border-bottom: 1px solid #010107;">
+                   <span style="font-weight: 400;">
+                    Verified by:‎       
+                </span>    
+                </td>
+                
+                <td style="border-bottom: 1px solid #010107;
+                border-right: 1px solid #010107;">
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <Br>
+                    <br>
+                    <span style="font-weight: bolder;">
+                        ㅤㅤㅤㅤJOEL P. MANUEL
+                        <br>
+                          
+                    </span>
+                    <span style="font-weight: 400;">
+                        
+                         Warehouse man IV/BPLO - Designate 
+                    </span>    
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+
+
+    <table class="table"> 
+        <thead>
+            <tr>
+                <th><span>‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎  2. ASSESSMENT OF APPLICABLE FEES</span></th>
+            </tr>
+        </thead>
+        
+        <thead>
+            <tr>
+                <th style="text-align: center; border-left: 1px solid #010107; border-right: 1px solid #010107;">Local Taxes</th>
+                <th style="text-align: center; border-left: 1px solid #010107; border-right: 1px solid #010107;">Amount Due</th>
+                <th style="text-align: center; border-left: 1px solid #010107; border-right: 1px solid #010107;">Penalty/Surcharge</th>
+                <th style="text-align: center; border-left: 1px solid #010107; border-right: 1px solid #010107;">Total</th>
+                
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #010107;">Gross Sales Tax/Initial Capital
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="GrossSalesFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (GrossSalesFirstAmountDue != undefined || GrossSalesFirstAmountDue != 0)">
+                    {{GrossSalesFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="GrossSalesPENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (GrossSalesPENALTYorSURCHARGE != undefined || GrossSalesPENALTYorSURCHARGE != 0)">
+                        {{GrossSalesPENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="GrossSalesTotal"/>
+                    <span *ngIf="isFinalizing && (GrossSalesTotal != undefined || GrossSalesTotal != 0)">
+                        {{GrossSalesTotal}}
+                    </span> 
+                </td>
+             
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">Tax on Delivery Vans/Truck
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="TaxonDeliveryFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (TaxonDeliveryFirstAmountDue != undefined || TaxonDeliveryFirstAmountDue != 0)">
+                    {{TaxonDeliveryFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="TaxonDeliveryPENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (TaxonDeliveryPENALTYorSURCHARGE != undefined || TaxonDeliveryPENALTYorSURCHARGE != 0)">
+                        {{TaxonDeliveryPENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="TaxonDeliveryTotal"/>
+                    <span *ngIf="isFinalizing && (TaxonDeliveryTotal != undefined || TaxonDeliveryTotal != 0)">
+                        {{TaxonDeliveryTotal}}
+                    </span> 
+                </td>
+             
+            </tr>
+            
+            <tr>
+                <td style="border: 1px solid #010107;">Tax on Storage for Combustible of Explosive Substance
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="TaxonStorageFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (TaxonStorageFirstAmountDue != undefined || TaxonStorageFirstAmountDue != 0)">
+                    {{TaxonStorageFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="TaxonStoragePENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (TaxonStoragePENALTYorSURCHARGE != undefined || TaxonStoragePENALTYorSURCHARGE != 0)">
+                        {{TaxonStoragePENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="TaxonStorageTotal"/>
+                    <span *ngIf="isFinalizing && (TaxonStorageTotal != undefined || TaxonStorageTotal != 0)">
+                        {{TaxonStorageTotal}}
+                    </span> 
+                </td>
+             
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">Tax on Signboard/Billboards
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="TaxonSignboardFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (TaxonSignboardFirstAmountDue != undefined || TaxonSignboardFirstAmountDue != 0)">
+                    {{TaxonSignboardFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="TaxonSignboardPENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (TaxonSignboardPENALTYorSURCHARGE != undefined || TaxonSignboardPENALTYorSURCHARGE != 0)">
+                        {{TaxonSignboardPENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="TaxonSignboardTotal"/>
+                    <span *ngIf="isFinalizing && (TaxonSignboardTotal != undefined || TaxonSignboardTotal != 0)">
+                        {{TaxonSignboardTotal}}
+                    </span> 
+                </td>
+            </tr>
+
+
+            <tr>
+                <td style="border-left: 1px solid #010107; border-bottom: 1px solid #010107; font-weight: bolder;">REGULATORY FEES AND CHARGES
+                </td>
+                <td style=" text-align: center;border: 1px solid transparent; border-bottom: 1px solid #010107;">
+                    
+                  
+                </td>
+                <td style="text-align: center; border: 1px solid transparent; border-bottom: 1px solid #010107;">
+                    
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                </td>
+             
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">Mayor's Permit Fee
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="MayorsPermitFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (MayorsPermitFirstAmountDue != undefined || MayorsPermitFirstAmountDue != 0)">
+                    {{MayorsPermitFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="MayorsPermitPENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (MayorsPermitPENALTYorSURCHARGE != undefined || MayorsPermitPENALTYorSURCHARGE != 0)">
+                        {{MayorsPermitPENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="MayorsPermitTotal"/>
+                    <span *ngIf="isFinalizing && (MayorsPermitTotal != undefined || MayorsPermitTotal != 0)">
+                        {{MayorsPermitTotal}}
+                    </span> 
+                </td>
+            </tr>
+
+
+            <tr>
+                <td style="border: 1px solid #010107;">Garbage Fee
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="GarbageFeeFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (GarbageFeeFirstAmountDue != undefined || GarbageFeeFirstAmountDue != 0)">
+                    {{GarbageFeeFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="GarbageFeePENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (GarbageFeePENALTYorSURCHARGE != undefined || GarbageFeePENALTYorSURCHARGE != 0)">
+                        {{GarbageFeePENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="GarbageFeeTotal"/>
+                    <span *ngIf="isFinalizing && (GarbageFeeTotal != undefined || GarbageFeeTotal != 0)">
+                        {{GarbageFeeTotal}}
+                    </span> 
+                </td>            
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">Sanitary Permit
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="SanitaryPermitFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (SanitaryPermitFirstAmountDue != undefined || SanitaryPermitFirstAmountDue != 0)">
+                    {{SanitaryPermitFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="SanitaryPermitPENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (SanitaryPermitPENALTYorSURCHARGE != undefined || SanitaryPermitPENALTYorSURCHARGE != 0)">
+                        {{SanitaryPermitPENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="SanitaryPermitTotal"/>
+                    <span *ngIf="isFinalizing && (SanitaryPermitTotal != undefined || SanitaryPermitTotal != 0)">
+                        {{SanitaryPermitTotal}}
+                    </span> 
+                </td>  
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">Weights and Measures Fee
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="WeightsFeeFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (WeightsFeeFirstAmountDue != undefined || WeightsFeeFirstAmountDue != 0)">
+                    {{WeightsFeeFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="WeightsFeePENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (WeightsFeePENALTYorSURCHARGE != undefined || WeightsFeePENALTYorSURCHARGE != 0)">
+                        {{WeightsFeePENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="WeightsFeeTotal"/>
+                    <span *ngIf="isFinalizing && (WeightsFeeTotal != undefined || WeightsFeeTotal != 0)">
+                        {{WeightsFeeTotal}}
+                    </span> 
+                </td>  
+            </tr>
+
+
+            <tr>
+                <td style="border: 1px solid #010107;">Storage and Sale Combustible or Substance
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="StorageSubstanceFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (StorageSubstanceFirstAmountDue != undefined || StorageSubstanceFirstAmountDue != 0)">
+                    {{StorageSubstanceFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="StorageSubstancePENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (StorageSubstancePENALTYorSURCHARGE != undefined || StorageSubstancePENALTYorSURCHARGE != 0)">
+                        {{StorageSubstancePENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="StorageSubstanceTotal"/>
+                    <span *ngIf="isFinalizing && (StorageSubstanceTotal != undefined || StorageSubstanceTotal != 0)">
+                        {{StorageSubstanceTotal}}
+                    </span> 
+                </td>  
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">Others:
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <!-- <input type="number"/> -->
+                  
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <!-- <input type="number"/> -->
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <!-- <input type="number"/> -->
+                  
+                    
+                </td>
+             
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107;">
+                    <Br>
+                        <Br>
+                            <Br>
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    
+                  
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    
+                  
+                    
+                </td>
+             
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107; font-weight: bolder;">TOTAL FEES FOR LGU
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="TotalFeesLguFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (TotalFeesLguFirstAmountDue != undefined || TotalFeesLguFirstAmountDue != 0)">
+                    {{TotalFeesLguFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="TotalFeesLguPENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (TotalFeesLguPENALTYorSURCHARGE != undefined || TotalFeesLguPENALTYorSURCHARGE != 0)">
+                        {{TotalFeesLguPENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="TotalFeesLguTotal"/>
+                    <span *ngIf="isFinalizing && (TotalFeesLguTotal != undefined || TotalFeesLguTotal != 0)">
+                        {{TotalFeesLguTotal}}
+                    </span> 
+                </td>  
+            </tr>
+
+            <tr>
+                <td style="border: 1px solid #010107; font-weight: bolder;">FIRE SAFETY INSPECTION FEE (10%)
+                </td>
+                <td style=" text-align: center;border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="FireSafetyFirstAmountDue"/>
+                  <span *ngIf="isFinalizing && (FireSafetyFirstAmountDue != undefined || FireSafetyFirstAmountDue != 0)">
+                    {{FireSafetyFirstAmountDue}}
+                  </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing" type="number" [(ngModel)]="FireSafetyPENALTYorSURCHARGE"/>
+                    <span *ngIf="isFinalizing && (FireSafetyPENALTYorSURCHARGE != undefined || FireSafetyPENALTYorSURCHARGE != 0)">
+                        {{FireSafetyPENALTYorSURCHARGE}}
+                    </span>
+                </td>
+                <td style="text-align: center; border: 1px solid #010107;">
+                    <input *ngIf="!isFinalizing"  type="number" [(ngModel)]="FireSafetyTotal"/>
+                    <span *ngIf="isFinalizing && (FireSafetyTotal != undefined || FireSafetyTotal != 0)">
+                        {{FireSafetyTotal}}
+                    </span> 
+                </td>  
+            </tr>
+          
+            <tr>
+                <td style="border-left: 1px solid #010107; border-bottom: 1px solid #010107;">
+                    Assessed by:
+                    <Br>
+                        <Br>
+                            <Br>
+                                <Br>
+                                    <Br>
+                                        <Br>
+                                                    <span style="font-weight: bolder;">
+                                                        ㅤㅤㅤㅤEMERSON C. VERGARA
+                                                        <br>
+                                                          
+                                                    </span>
+                                                    <span style="font-weight: 400;">
+                                                        
+                                                        ㅤㅤㅤㅤㅤMunicipal Treasurer 
+                                                    </span> 
+                </td>
+                <td style="border-bottom: 1px solid #010107;">
+                </td>
+                <td style="border-bottom: 1px solid #010107;">
+                    FSIF Approved by:
+                    <Br>
+                        <Br>
+                            <Br>
+                                <Br>
+                                    <Br>
+                                        <Br>
+                                                    
+                                                    <span style="font-weight: 400;">
+                                                        
+                                                        Municipal Fire Marshall 
+                                                    </span> 
+                </td>
+                <td style="border-bottom: 1px solid #010107;
+                border-right: 1px solid #010107;">
+                </td>
+             
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th><span>III. CITY/MUNICIPALITY FIRE STATION SECTION‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                    ‎ 
+                </span></th>
+            </tr>
+        </thead>      
+        <tbody>
+            <tr>
+                <td style="border-left: 1px solid #010107; border-bottom: 1px solid #010107; 
+                border-right: 1px solid #010107;"> 
+    <br>
+                    <div class="row" style="border-left: 1px solid #010107;">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <span style="font-weight: bolder;">‎ ‎ ‎ 
+                                APPLICATION NO: 
+                            </span>
+                            <br>
+                            <span style="font-weight: bolder;">‎ ‎ ‎ 
+                                (TO BE FILLED UP BY APPLICANT/OWNER) 
+                            </span>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            
+                            <span style="font-weight: bolder;">‎ ‎ ‎ 
+                                DATE: </span>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row" style="border-left: 1px solid #010107;">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                Name of Applicant/Owner: 
+                            </span>
+                            <br>
+                            
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="border-left: 1px solid #010107;">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                Name of Business: 
+                            </span>
+                            <br>
+                            
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row" style="border-left: 1px solid #010107;">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                Total Floor Area: 
+                            </span>
+                            <br>
+                            
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                Contact No: 
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="border-left: 1px solid #010107;">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                Address of Establishment: 
+                            </span>
+                            <br>
+                            
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            
+                        </div>
+                    </div>
+                    
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row" style="border-left: 1px solid #010107;">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <span style="font-weight: 500;">‎ ‎ ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎ 
+                                _________________________________________ 
+                            </span>
+                            <br>
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                ‎
+                                Signature of Applicant/Owner 
+                            </span>
+                            <br>
+                            
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row" style="border-left: 1px solid #010107;">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                Certified By: 
+                            </span>
+                            <br>
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                Customer Relations Officer 
+                            </span>
+                            <br>
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                Time and Date Received: ________________________________ 
+                            </span>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                FIRE SAFETY INSPECTION 
+                            </span>
+                            <br>
+                            <span style="font-weight: 500;">‎ ‎ ‎ 
+                                FEE ASSESSMENT: 
+                            </span>
+                            <br>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="card-footer">
+    <div class="row">
+        <!-- <div class="col-lg-12 text-left second-part"> -->
+            <div class="col-lg-3 col-sm-3 col-md-3">
+                <button type="button" class="btn btn-success pl-5 pr-5 btn-block"
+                (click)="showAlert()">
+                    Export to PDF
+                </button>
+            </div>
+        <!-- </div> -->
+    </div>
+    
+</div>

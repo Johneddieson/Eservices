@@ -1,1 +1,123 @@
-<p>adminhome works!</p>
+
+ <!-- navbar -->
+ <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
+    <div class="container-fluid px-0" style="margin:25px 50px 25px 50px;">
+       <div class="d-flex justify-content-between w-100" id="navbarDropdownMenuLink">
+          <div class="d-flex align-items-center">
+             <form class="navbar-search form-inline" id="navbar-search-main">
+                <div class="input-group input-group-merge search-bar"> 
+                   <img src="assets/alcalalogo.png" style="width: 80px;
+                   height: 80px;"/> 
+                </div>
+             </form>
+          </div>
+          <ul class="navbar-nav align-items-center">
+             <li class="nav-item dropdown ms-lg-3">
+                <a class="nav-link dropdown-toggle pt-1 px-0" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   <div class="media d-flex align-items-center">
+                      <img class="avatar rounded-circle" alt="Image placeholder" src="assets/img/profile-picture-3.jpg">
+                      <div class="media-body ms-2 text-dark align-items-center d-lg-block"><span class="mb-0 font-xs fw-bold text-gray-900">{{firstname}}</span></div>
+                   </div>
+                </a>
+                <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
+                   <a class="dropdown-item d-flex align-items-center" routerLink="/editprofile">
+                      Edit Profile 
+                   </a>
+                   <div role="separator" class="dropdown-divider my-1"></div>
+                   <a class="dropdown-item d-flex align-items-center" (click)="changePassword()">
+                     Change Password 
+                  </a>
+                   <div role="separator" class="dropdown-divider my-1"></div>
+                   <a class="dropdown-item d-flex align-items-center" (click)="logout()">
+                      Logout
+                   </a>
+                </div>
+             </li>
+          </ul>
+         </div>
+    </div>
+ </nav>
+ <br>
+ <!-- end of navbar -->
+ 
+
+
+ <!-- html css navbar with dropdown -->
+ <!-- <header>
+   <a href="#" class="logo">LOGO</a>
+   <input type="checkbox" id="menu-bar">
+   <label for="menu-bar">Menu</label>
+   <nav class="navbar">
+      <ul>
+         <li><a href="#">home</a></li>
+         <li><a href="#">about</a></li>
+         <li>
+            <a href="#">pages +</a>
+            <ul>
+               <li><a href="#">blogs</a></li>
+               <li><a href="#">services +</a>
+                  <ul>
+                     <li><a href="#">html</a></li>
+                     <li><a href="#">css</a></li>
+                     <li><a href="#">javascript</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </li>
+         <li><a href="#">review</a></li>
+         <li><a href="#">gallery +</a>
+            <ul>
+               <li><a href="#">grid gallery</a></li>
+               <li><a href="#">flex gallery</a></li>
+
+            </ul>
+         </li>
+         <li><a href="#">contact</a></li>
+      </ul>
+   </nav>
+</header> -->
+ <!-- end of html css navbar with dropdown -->
+
+
+ <!-- card list -->
+ <div class="row" style="margin:25px 50px 25px 50px;">
+   <div class="col-12 col-sm-6 col-xl-4 mb-4">
+       <div class="card border-0 shadow" style="cursor: pointer;" routerLink="/businesspermit/list">
+          <div class="card-body">
+             <div class="row d-block d-xl-flex align-items-center">
+                <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                    <div class="icon-shape rounded me-4 me-sm-0">
+                      <img src="https://filipiknow.net/wp-content/uploads/2022/04/business-permit-philippines-featured-image-1024x576.png" 
+                      
+                      /> 
+                   </div>
+                   <div class="d-sm-none">
+                      <h2 class="h5">List of</h2>
+                      <h3 class="fw-extrabold mb-1">BUSINESS PERMIT</h3>
+                   </div>
+                </div>
+                <div class="col-12 col-xl-7 px-xl-0">
+                   <div class="d-none d-sm-block">
+                      <h2 class="h5">List of</h2>
+                      <h3 class="fw-extrabold mb-1">BUSINESS PERMIT</h3>
+                   </div>
+                   <small class="d-flex align-items-center">
+                    Alcala List of Business Permit Services    
+                   </small>
+                   <div class="small d-flex mt-1">
+                      <div>
+                        <span *ngIf="totalPendingLength <= 1" class="text-danger fw-bolder me-1">{{totalPendingLength}} total pending</span>
+                        <span *ngIf="totalPendingLength > 1" class="text-danger fw-bolder me-1">{{totalPendingLength}} total pendings</span>
+                 
+                    </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>  
+ </div>
+ <!-- end of card list -->
+
+
+

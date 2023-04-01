@@ -1,0 +1,983 @@
+<div id="page-content-wrapper">
+    <ngx-spinner  type="pacman">
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+        <p class="loading">Submitting...</p>
+    </ngx-spinner>
+    <ngx-alerts></ngx-alerts>
+    <div class="container-fluid p-1 bg-white">
+       
+        <form id="vax_easy_reg_form" class="needs-validation" [formGroup]="createNewBusinessPermitFormGroup">
+            <div class="card content-container m-4 p-5" style="min-height: 500px">
+                <h4 class="cc-title fi-case-initial" id="top_label"><strong>Alcala Renew Business Permit</strong></h4>
+                <div class="card-body" style="margin-top: 0rem; font-family: helvetica">
+                    <div class="card" id="allforms" style="border-radius: 0px">
+                        <div class="card-body p-3">
+
+                            <!-- Basic Information -->
+                            <div class="col-lg-12 mt-4 mb-2">
+                                <h4 style="font-weight: bold;">1. Basic Information</h4>
+                            </div>
+                            <div class="row">
+
+                                <!-- Type -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_fname">
+                                            Type
+                                        </label>
+                                        <input type="text" class="form-control" id="str_fname"
+                                            style="text-transform:uppercase" value="Renew" disabled>
+                                    </div>
+                                </div>
+                                <!-- End of Type -->
+
+
+                                <!-- Mode of Payment -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_mname">
+                                            <span class="text-danger">*</span> Mode Of Payment
+                                        </label>
+                                        <select name="int_modeOfPayment" class="form-select" id="int_modeOfPayment"
+                                            formControlName="modeofpayment">
+                                            <option value="" selected="selected">SELECT MODE OF PAYMENT</option>
+                                            <option value="ANUALLY">ANUALLY</option>
+                                            <option value="SEMI-ANUALLY">SEMI-ANUALLY</option>
+                                            <option value="QUARTERLY">QUARTERLY</option>
+                                            <!-- <option *ngFor="let mode of modeOfPaymentList" [value]="mode.id">
+                                                {{mode.name}}</option> -->
+                                        </select>
+                                        <p style="color: red;" *ngIf="f['modeofpayment'].errors && f['modeofpayment'].errors['required']">Shouldn't be empty.</p>      
+                                            
+                                    </div>
+                                </div>
+                                <!-- End of Mode of Payment -->
+
+
+                                <!-- Date of Application -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_lname">
+                                            <span class="text-danger">*</span> Date of Application
+                                        </label>
+                                        <input type="date" class="form-control" formControlName="dateofapplication">
+                                        <p style="color: red;" *ngIf="f['dateofapplication'].errors && f['dateofapplication'].errors['required']">Shouldn't be empty.</p>      
+                                        <!-- <br> -->
+
+                                    </div>
+                                </div>
+                                <!--End of Date of Application -->
+                                    
+
+                                <!-- Tin No -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_suffix">
+                                            <span class="text-danger">*</span> Tin No.
+                                        </label>
+                                        <input type="text" class="form-control" id="str_TinNo"
+                                            style="text-transform:uppercase"
+                                            formControlName="tinno">
+                                            <p style="color: red;" *ngIf="f['tinno'].errors && f['tinno'].errors['required']">Shouldn't be empty.</p>      
+                                            <p style="color: red;" *ngIf="tinWrongFormat">Format(12 Digits): 'XXX-XXX-XXX-XXX.'</p>
+                                            <br>
+                                        </div>
+                                </div>
+                                <!-- End of Tin No -->
+
+                                    
+                                <!-- DTI/SEC/CDA Registration No. -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_bdate">
+                                            <span class="text-danger">*</span> DTI/SEC/CDA Registration No.
+                                        </label>
+                                        <input type="text" class="form-control" style="text-transform:uppercase"
+                                        formControlName="dtiseccdaregistrationnumber">
+                                        <p style="color: red;" *ngIf="f['dtiseccdaregistrationnumber'].errors && f['dtiseccdaregistrationnumber'].errors['required']">Shouldn't be empty.</p>      
+                                           
+                                    </div>
+                                </div>
+                                <!-- End of DTI/SEC/CDA Registration No. -->
+
+
+                                <!-- DTI/SEC/CDA Registration Date -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_bdate">
+                                            <span class="text-danger">*</span> DTI/SEC/CDA Registration Date
+                                        </label>
+                                        <input type="date" class="form-control"
+                                        formControlName="dtiseccdaregistrationdate">
+                                        <p style="color: red;" *ngIf="f['dtiseccdaregistrationdate'].errors && f['dtiseccdaregistrationdate'].errors['required']">Shouldn't be empty.</p>      
+
+                                    </div>
+                                </div>
+                                <!-- End of DTI/SEC/CDA Registration Date -->
+
+                                <!-- Type of Business  -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_mname">
+                                            <span class="text-danger">*</span> Type Of Business
+                                        </label>
+                                        <select name="int_modeOfPayment" class="form-select" formControlName="typeofbusiness">
+                                            <option value="" selected="selected">SELECT TYPE OF BUSINESS</option>
+                                            <option value="COOPERATIVE">COOPERATIVE</option>
+                                            <option value="CORPORATION">CORPORATION</option>
+                                            <option value="PARTNERSHIP">PARTNERSHIP</option>
+                                            <option value="SINGLE">SINGLE</option>
+                                            <!-- <option *ngFor="let mode of typeOfBusinessList" [value]="mode.id">
+                                                {{mode.name}}</option> -->
+                                        </select>
+                                        <p style="color: red;" *ngIf="f['typeofbusiness'].errors && f['typeofbusiness'].errors['required']">Shouldn't be empty.</p>      
+
+                                    </div>
+                                </div>
+                                <!-- End of Type of Business  -->
+
+                                <!-- Are you enjoying tax incentive from any Government Entity?  -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="str_mname">
+                                            <span class="text-danger">*</span> Are you enjoying tax incentive from any
+                                            Government Entity?
+                                        </label>
+                                        <select class="form-select" formControlName="taxincentivegovernmententity"
+                                        (change)="specifyEntity($event)">
+                                            <option value="" selected="selected">SELECT</option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                        <p style="color: red;" *ngIf="f['taxincentivegovernmententity'].errors && f['taxincentivegovernmententity'].errors['required']">Shouldn't be empty.</p>      
+
+                                    </div>
+                                </div>
+                                <!-- End of Are you enjoying tax incentive from any Government Entity?  -->
+
+                                <!-- Please specify the entity -->
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="str_suffix">
+                                            <span class="text-danger">*</span> Please Specify The Entity
+                                        </label>
+                                        <textarea type="text" class="form-control" id="str_TinNo"
+                                            style="text-transform:uppercase" formControlName="specifytheentity"
+                                            [readOnly]="disableSpecifyEntityTextArea">
+                                        </textarea>
+                                        <p style="color: red;" *ngIf="f['specifytheentity'].errors && f['specifytheentity'].errors['required']">Shouldn't be empty.</p>      
+
+                                    </div>
+                                </div>
+                                <!-- End of Please specify the entity -->
+
+                                <!-- End of Basic Information -->
+                                   
+                                <!-- Amendment -->
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <h6 style="font-weight: 600;">AMENDMENT</h6>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="str_mname">
+                                             From
+                                        </label>
+                                        <select name="int_modeOfPayment" class="form-select" formControlName="from">
+                                            <option value="" selected="selected">PLEASE SELECT</option>
+                                            <option value="CORPORATION">CORPORATION</option>
+                                            <option value="PARTNERSHIP">PARTNERSHIP</option>
+                                            <option value="SINGLE">SINGLE</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="str_mname">
+                                             To
+                                        </label>
+                                        <select name="int_modeOfPayment" class="form-select" formControlName="to">
+                                            <option value="" selected="selected">PLEASE SELECT</option>
+                                            <option value="CORPORATION">CORPORATION</option>
+                                            <option value="PARTNERSHIP">PARTNERSHIP</option>
+                                            <option value="SINGLE">SINGLE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- End of Amendment -->
+
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <h6 style="font-weight: 600;">NAME OF TAXPAYER/REGISTRANT</h6>
+                                </div>
+
+                                <!-- LastName -->
+                                <div class="col-md-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Last Name : </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="taxpayerlastname">
+                                    <p style="color: red;" *ngIf="f['taxpayerlastname'].errors && f['taxpayerlastname'].errors['required']">Shouldn't be empty.</p>      
+                                    <p style="color: red;" *ngIf="f['taxpayerlastname'].errors && f['taxpayerlastname'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
+
+                                </div>
+                                <!-- End of LastName -->
+
+                                <!-- FirstName -->
+                                <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> First Name :</h6>
+                                    <input type="text" class="form-control" formControlName="taxpayerfirstname">
+                                    <p style="color: red;" *ngIf="f['taxpayerfirstname'].errors && f['taxpayerfirstname'].errors['required']">Shouldn't be empty.</p>      
+                                    <p style="color: red;" *ngIf="f['taxpayerfirstname'].errors && f['taxpayerfirstname'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
+
+                                </div>
+                                <!-- Enf of FirstName -->
+
+
+                                <!-- Middle Name -->
+                                <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Middle Name :</h6>
+                                    <input type="text" class="form-control regex_house_no" formControlName="taxpayermiddlename">
+                                        <p style="color: red;" *ngIf="f['taxpayermiddlename'].errors && f['taxpayermiddlename'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['taxpayermiddlename'].errors && f['taxpayermiddlename'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
+    
+                                </div>
+                                <!-- End of Middle Name -->
+
+                                <!-- Business Name -->
+                                <div class="col-xl-3 mt-2">
+                                    <h6 class="ml-1"> <span class="text-danger"><strong>*</strong></span> Business Name
+                                        : </h6>
+                                    <input type="text" class="form-control regex_house_no" formControlName="taxpayerbusinessname">
+                                    <p style="color: red;" *ngIf="f['taxpayerbusinessname'].errors && f['taxpayerbusinessname'].errors['required']">Shouldn't be empty.</p>      
+                                    <p style="color: red;" *ngIf="f['taxpayerbusinessname'].errors && f['taxpayerbusinessname'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
+                                    <p style="color: red;" *ngIf="f['taxpayerbusinessname'].errors && f['taxpayerbusinessname'].errors['minlength']">Minimum of 4 characters.</p>      
+                                </div>
+                                <!-- End of Business Name -->
+
+
+                                <!-- Trade Name / Franchise -->
+                                <div class="col-xl-12 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Trade Name / Franchise :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="tradenamefranchise">
+                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
+                                        <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['minlength']">Minimum of 4 characters.</p>      
+                           
+                                </div>
+                                <!-- End of Trade Name / Franchise -->
+                                
+                                <!-- Other Information -->
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <h4 style="font-weight: bold;">2. Other Information</h4>
+                                </div>
+
+                                  <!-- Business Address -->
+                                  <div class="col-xl-12 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Business Address :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="businessaddress">
+                                        <p style="color: red;" *ngIf="f['businessaddress'].errors && f['businessaddress'].errors['required']">Shouldn't be empty.</p>      
+                                        <!-- <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>       -->
+                                        <p style="color: red;" *ngIf="f['businessaddress'].errors && f['businessaddress'].errors['minlength']">Minimum of 4 characters.</p>      
+                           
+                                </div>
+                                <!-- End of Business Address -->
+
+
+
+                                  <!-- Business Postal Code -->
+                                  <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Business Postal Code :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="businesspostalcode">
+                                        <p style="color: red;" *ngIf="f['businesspostalcode'].errors && f['businesspostalcode'].errors['required']">Shouldn't be empty.</p>      
+                                        <!-- <p style="color: red;" *ngIf="f['tradenamefranchise'].errors && f['tradenamefranchise'].errors['pattern']">Numbers or any other special characters are not allowed.</p>       -->
+                                        <p style="color: red;" *ngIf="f['businesspostalcode'].errors && f['businesspostalcode'].errors['minlength']">Minimum of 4 characters.</p>      
+                           
+                                </div>
+                                <!-- Business End of Postal Code -->
+
+
+                                <!-- Business Email Address -->
+                                <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Business Email Address :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="businessemailaddress">
+                                        <p style="color: red;" *ngIf="f['businessemailaddress'].errors && f['businessemailaddress'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['businessemailaddress'].errors && f['businessemailaddress'].errors['email']">Wrong Format.</p>      
+                                </div>
+                                <!-- Business End of Email Address -->
+
+
+                                  <!-- Business Telephone No -->
+                                  <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Business Telephone No :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="businesstelephone">
+                                        <p style="color: red;" *ngIf="f['businesstelephone'].errors && f['businesstelephone'].errors['required']">Shouldn't be empty.</p>      
+                                
+                                </div>
+                                <!-- Business End of Telephone No -->
+
+                                   <!-- Business Mobile No -->
+                                   <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Business Mobile No :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="businessmobile">
+                                        <p style="color: red;" *ngIf="f['businessmobile'].errors && f['businessmobile'].errors['required']">Shouldn't be empty.</p>      
+                            
+                                </div>
+                                <!-- Business End of Mobile No -->
+
+
+                                   <!-- Owners Owners Address -->
+                                   <div class="col-xl-12 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Owners Address :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="ownersaddress">
+                                        <p style="color: red;" *ngIf="f['ownersaddress'].errors && f['ownersaddress'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['ownersaddress'].errors && f['ownersaddress'].errors['minlength']">Minimum of 4 characters.</p>      
+                           
+                                </div>
+                                <!-- Owners End of Business Address -->
+
+
+
+                                  <!-- Owners Postal Code -->
+                                  <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Owners Postal Code :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="ownerspostalcode">
+                                        <p style="color: red;" *ngIf="f['ownerspostalcode'].errors && f['ownerspostalcode'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['ownerspostalcode'].errors && f['ownerspostalcode'].errors['minlength']">Minimum of 4 characters.</p>      
+                           
+                                </div>
+                                <!-- Owners End of Postal Code -->
+
+
+                                <!-- Owners Email Address -->
+                                <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Owners Email Address :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="ownersemailaddress">
+                                        <p style="color: red;" *ngIf="f['ownersemailaddress'].errors && f['ownersemailaddress'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['ownersemailaddress'].errors && f['ownersemailaddress'].errors['email']">Wrong Format</p>      
+                           
+                                </div>
+                                <!-- Owners End of Email Address -->
+
+
+                                  <!-- Owners Telephone No -->
+                                  <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Owners Telephone No :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="ownerstelephone">
+                                        <p style="color: red;" *ngIf="f['ownerstelephone'].errors && f['ownerstelephone'].errors['required']">Shouldn't be empty.</p>      
+                              
+                                </div>
+                                <!-- Owners End of Telephone No -->
+
+                                   <!-- Owners Mobile No -->
+                                   <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Owners Mobile No :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="ownersmobile">
+                                        <p style="color: red;" *ngIf="f['ownersmobile'].errors && f['ownersmobile'].errors['required']">Shouldn't be empty.</p>      
+                           
+                                </div>
+                                <!-- Owners End of Mobile No -->
+
+
+                                <!-- Owners End of Address -->
+
+
+
+                                  <!-- In case of emergency, provide name and contact person: -->
+                                  <div class="col-xl-12 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> In case of emergency, provide name and contact person:
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="incaseofemergencyperson">
+                                        <p style="color: red;" *ngIf="f['incaseofemergencyperson'].errors && f['incaseofemergencyperson'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['incaseofemergencyperson'].errors && f['incaseofemergencyperson'].errors['pattern']">Numbers or any other special characters are not allowed.</p>      
+                           
+                                </div>
+                                <!-- End of In case of emergency, provide name and contact person: -->
+
+
+                                <!-- Telephone / Mobile No  -->
+                                <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Telephone / Mobile No :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="incaseofemergencypersontelephonenumber">
+                                        <p style="color: red;" *ngIf="f['incaseofemergencypersontelephonenumber'].errors && f['incaseofemergencypersontelephonenumber'].errors['required']">Shouldn't be empty.</p>      
+                           
+                                </div>
+                                <!-- End of Telephone / Mobile No  -->
+
+
+                                  <!-- Email Address -->
+                                  <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span>Email Address :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="incaseofemergencypersonemail">
+                                        <p style="color: red;" *ngIf="f['incaseofemergencypersonemail'].errors && f['incaseofemergencypersonemail'].errors['required']">Shouldn't be empty.</p>      
+                                        <p style="color: red;" *ngIf="f['incaseofemergencypersonemail'].errors && f['incaseofemergencypersonemail'].errors['email']">Wrong Format</p>      
+                              
+                                </div>
+                                <!-- End of Email Address -->
+
+                                   <!-- Business Area (in sq m) -->
+                                   <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Business Area (in sq m) :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="incaseofemergencypersonbusinessarea">
+                                        <p style="color: red;" *ngIf="f['incaseofemergencypersonbusinessarea'].errors && f['incaseofemergencypersonbusinessarea'].errors['required']">Shouldn't be empty.</p>      
+                           
+                                </div>
+                                <!-- End of Business Area (in sq m) -->
+
+                                
+                                   <!-- Gross/Sales Receipts -->
+                                   <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Gross/Sales Receipts :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="grossreceipt">
+                                        <p style="color: red;" *ngIf="f['grossreceipt'].errors && f['grossreceipt'].errors['required']">Shouldn't be empty.</p>      
+                              
+                                </div>
+                                <!-- End of Gross/Sales Receipts -->
+
+                                <!-- Total No. of Employees in Establishment -->
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <h6 style="font-weight: 600;">Total No. of Employees in Establishment</h6>
+                                </div>
+                                   <!-- Male -->
+                                   <div class="col-xl-2 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Male :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="totalnumberofmale">
+                                        <p style="color: red;" *ngIf="f['totalnumberofmale'].errors && f['totalnumberofmale'].errors['required']">Shouldn't be empty.</p>      
+                              
+                                </div>
+                                <!-- End of Male -->
+
+                                 <!-- Female -->
+                                 <div class="col-xl-2 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Female :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="totalnumberoffemale">
+                                        <p style="color: red;" *ngIf="f['totalnumberoffemale'].errors && f['totalnumberoffemale'].errors['required']">Shouldn't be empty.</p>      
+                                
+                                </div>
+                                <!-- End of Female -->
+
+                                <!-- End of Total No. of Employees in Establishment -->
+
+
+                                  <!-- No. of Employees Residing within LGU -->
+                                  <div class="col-lg-12 mt-4 mb-2">
+                                    <h6 style="font-weight: 600;">No. of Employees Residing within LGU</h6>
+                                </div>
+                                   <div class="col-xl-2 mt-2">
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="numberofemployeeslgu">
+                                        <p style="color: red;" *ngIf="f['numberofemployeeslgu'].errors && f['numberofemployeeslgu'].errors['required']">Shouldn't be empty.</p>      
+                                </div>
+                                <!-- No. of Employees Residing within LGU -->
+
+                                <!-- Note: Fill up only if Business Place is Rented -->
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <h6 style="font-weight: 600;">Note: Fill up only if Business Place is Rented</h6>
+                                </div>
+
+                                   <!-- Lessor's Full Name  -->
+                                   <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Lessor's Full Name :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="lessorsfullname">
+                            
+                                </div>
+                                <!-- End of Lessor's Full Name  -->
+
+                                 <!-- Lessor's Address  -->
+                                 <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Lessor's Address :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="lessorsaddress">
+                              
+                                </div>
+                                <!-- End of Lessor's Address  -->
+
+                                  <!-- Lessor's Telephone /Mobile No.  -->
+                                  <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Lessor's Tel/Mobile No. :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="lessorstelorphone">
+                           
+                                </div>
+                                <!-- End of Lessor's Telephone /Mobile No.  -->
+
+                                  <!-- Lessor's Email Address  -->
+                                  <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Lessor's Email Address :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="lessorsemail">
+                               
+                                </div>
+                                <!-- End of Lessor's Email Address  -->
+                                
+                                 <!-- Monthly Rental  -->
+                                 <div class="col-xl-3 mt-2">
+                                    <h6> <span class="text-danger"><strong>*</strong></span> Monthly Rental :
+                                    </h6>
+                                    <input type="text" class="form-control regex_house_no" id="txt_barangay"
+                                        formControlName="monthlyrental">
+                           
+                                </div>
+                                <!-- End of Monthly Rental  -->
+
+                                <!-- End of Note: Fill up only if Business Place is Rented -->
+
+
+                                <!-- End of Other Information -->
+
+
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <h4 style="font-weight: bold;">3. Business Activity</h4>
+                                </div>
+
+                                <!-- number 1 -->
+
+                                <div class="col-lg-12 mb-2">
+                                    <p style="font-weight: bold;">1.)</p>
+                                </div>
+
+                                <!-- Line of business 1 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span><span class="text-danger">*</span> Line of
+                                        Business :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="lineofbusiness">
+                                    <p style="color: red;" *ngIf="f['lineofbusiness'].errors && f['lineofbusiness'].errors['required']">Shouldn't be empty.</p> 
+                                </div>
+                                <!-- end of Line of business 1 -->
+
+                                <!-- No of Units 1 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span><span class="text-danger">*</span> No of Units
+                                        :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="numberofunits">
+                                    <p style="color: red;" *ngIf="f['numberofunits'].errors && f['numberofunits'].errors['required']">Shouldn't be empty.</p> 
+                          
+                                </div>
+                                <!-- end of No of Units 1 -->
+
+
+                                <!-- Capitalization for new business 1 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        <span class="text-danger">*</span> Capitalization <br>(for New Business) :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="capitalization">
+                                    <p style="color: red;" *ngIf="f['capitalization'].errors && f['capitalization'].errors['required']">Shouldn't be empty.</p> 
+                                </div>
+                                <!-- end of Capitalization for new business 1 -->
+
+                                <!-- Essential 1 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> 
+                                        <span class="text-danger">*</span> Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="essential">
+                                    <p style="color: red;" *ngIf="f['essential'].errors && f['essential'].errors['required']">Shouldn't be empty.</p> 
+                           
+                                </div>
+                                <!-- end of Essential 1-->
+
+                                <!-- NonEssential 1 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        <span class="text-danger">*</span> Non-Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="nonessential">
+                                    <p style="color: red;" *ngIf="f['nonessential'].errors && f['nonessential'].errors['required']">Shouldn't be empty.</p> 
+                           
+                                </div>
+                                <!-- end of NonEssential 1-->
+
+
+                                <!-- end of number 1 -->
+
+
+                                <!-- number 2 -->
+                                <div class="col-lg-12 mb-2">
+                                    <br>
+                                    <p style="font-weight: bold;">2.)</p>
+                                </div>
+
+                                <!-- Line of business 2 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> Line of
+                                        Business :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="lineofbusiness2">
+                                </div>
+                                <!-- end of Line of business 2 -->
+
+                                <!-- No of Units 2 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> No of Units
+                                        :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="numberofunits2">
+                                </div>
+                                <!-- end of No of Units 2 -->
+
+
+                                <!-- Capitalization for new business 2 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        Capitalization <br>(for New Business) :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="capitalization2">
+                                </div>
+                                <!-- end of Capitalization for new business 2 -->
+
+                                <!-- Essential 2 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="essential2">
+                                </div>
+                                <!-- end of Essential 2-->
+
+                                <!-- NonEssential 2 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        Non-Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="nonessential2">
+                                </div>
+                                <!-- end of NonEssential 2-->
+
+                                <!-- end of number 2 -->
+
+
+
+
+
+
+                                <!-- number 3 -->
+                                <div class="col-lg-12 mb-2">
+                                    <br>
+                                    <p style="font-weight: bold;">3.)</p>
+                                </div>
+
+                                <!-- Line of business 3 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> Line of
+                                        Business :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="lineofbusiness3">
+                                </div>
+                                <!-- end of Line of business 3 -->
+
+                                <!-- No of Units 3 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> No of Units
+                                        :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="numberofunits3">
+                                </div>
+                                <!-- end of No of Units 3 -->
+
+
+                                <!-- Capitalization for new business 3 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        Capitalization <br>(for New Business) :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="capitalization3">
+                                </div>
+                                <!-- end of Capitalization for new business 3 -->
+
+                                <!-- Essential 3 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="essential3">
+                                </div>
+                                <!-- end of Essential 3-->
+
+                                <!-- NonEssential 3 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        Non-Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="nonessential3">
+                                </div>
+                                <!-- end of NonEssential 3-->
+
+                                <!-- end of number 3 -->
+
+
+
+
+
+                                <!-- number 4 -->
+                                <div class="col-lg-12 mb-2">
+                                    <br>
+                                    <p style="font-weight: bold;">4.)</p>
+                                </div>
+
+                                <!-- Line of business 4 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> Line of
+                                        Business :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="lineofbusiness4">
+                                </div>
+                                <!-- end of Line of business 4 -->
+
+                                <!-- No of Units 4 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> No of Units
+                                        :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="numberofunits4">
+                                </div>
+                                <!-- end of No of Units 4 -->
+
+
+                                <!-- Capitalization for new business 4 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        Capitalization <br>(for New Business) :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="capitalization4">
+                                </div>
+                                <!-- end of Capitalization for new business 4 -->
+
+                                <!-- Essential 4 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="essential4">
+                                </div>
+                                <!-- end of Essential 4-->
+
+                                <!-- NonEssential 4 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        Non-Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="nonessential4">
+                                </div>
+                                <!-- end of NonEssential 4-->
+
+                                <!-- end of number 4 -->
+
+
+
+
+                                <!-- number 5 -->
+                                <div class="col-lg-12 mb-2">
+                                    <br>
+                                    <p style="font-weight: bold;">5.)</p>
+                                </div>
+
+                                <!-- Line of business 5 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> Line of
+                                        Business :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="lineofbusiness5">
+                                </div>
+                                <!-- end of Line of business 5 -->
+
+                                <!-- No of Units 5 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> No of Units
+                                        :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="numberofunits5">
+                                </div>
+                                <!-- end of No of Units 5 -->
+
+
+                                <!-- Capitalization for new business 5 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        Capitalization <br>(for New Business) :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="capitalization5">
+                                </div>
+                                <!-- end of Capitalization for new business 5 -->
+
+                                <!-- Essential 5 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span> Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="essential5">
+                                </div>
+                                <!-- end of Essential 5-->
+
+                                <!-- NonEssential 5 -->
+                                <div class="col-md-4 mt-2">
+
+                                    <h6> <span class="text-danger workinqc_fields"><strong></strong></span>
+                                        Non-Essential :
+                                    </h6>
+                                    <input type="text" class="form-control"
+                                    formControlName="nonessential5">
+                                </div>
+                                <!-- end of NonEssential 5-->
+
+                                <!-- end of number 5 -->
+
+                          <!-- I Agree       -->
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <br>
+                                    <input type="checkbox"
+                                    formControlName="iagreecheckbox"/>
+                                    <p style="font-weight: bold;">
+                                        <span class="text-danger">*</span> 
+                                        I DECLARE UNDER PENALTY OF PERJURY that 
+                                        foregoing information are true base on my perosnal 
+                                        knowledge and authentic records. Further, 
+                                        I agree to comply with the regulatory requirements and other 
+                                        deficiencies within 30 days from release of the business permit.
+                                    </p>
+                                    <p style="color: red;" *ngIf="f['iagreecheckbox'].errors && f['iagreecheckbox'].errors['required']">Please Check.</p> 
+                           
+                                </div>
+                           <!-- end of I Agree       -->
+        
+                           <!-- signature of applicant canvas -->
+                                <div class="col-lg-8 mt-4 mb-2">
+                                    <br>
+                                    <h6 style="font-weight: bold;"><span class="text-danger">*</span>SIGNATURE OF APPLICANT</h6> 
+                                    
+                                    <signature-pad #signature [options]="signaturePadOptions"
+                                    (drawStart)="drawStart($event)" (drawEnd)="drawComplete($event)"
+                                    ></signature-pad>
+                                    <br>
+                                    <p style="color: red;" *ngIf="f['signatureofapplicant'].errors && f['signatureofapplicant'].errors['required']">Applicant Signature is Required.</p> 
+                                    <button *ngIf="!startwriting" type="button" class="btn btn-success" (click)="startWriting()">Start Writing</button>
+                                    <button *ngIf="signaturevaluetrue" type="button" class="btn btn-danger" (click)="clearSignature()">Clear Signature</button>
+                                </div>
+                           <!-- end of signature of applicant canvas -->   
+
+                                <!-- taxpayer over printed name -->
+                                <div class="col-lg-12 mt-4 mb-2">
+                                    <span>{{f['taxpayerfirstname'].value}} {{f['taxpayermiddlename'].value}} {{f['taxpayerlastname'].value}}</span>
+                                    <br>
+                                    <br> 
+                                    <h6 style="font-weight: bold;">TAXPAYER OVER PRINTED NAME</h6> 
+                                </div>
+                                <!-- end of signature of applicant canvas -->
+                            </div>
+
+                            <!-- Submit Cancel Button -->
+                            <div class="card-footer">
+                                <div class="row">
+                                    <!-- <div class="col-lg-12 text-left second-part"> -->
+
+                                        <div class="col-lg-1">
+
+                                            <button type="button" class="btn btn-primary pl-5 pr-5 btn-block"
+                                            (click)="sumbmitBusinessPermit()">
+                                                Submit
+                                            </button>
+                                        </div>
+
+                                        
+                                        <div class="col-lg-4">
+                                            <button type="button" class="btn btn-danger pl-5 pr-5 btn-block"
+                                            routerLink="/home">
+                                            Cancel
+                                        </button>
+                                        </div>
+                                    <!-- </div> -->
+                                </div>
+                                
+                            </div>
+                            <!-- End of Submit Cancel Button -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

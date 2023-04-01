@@ -51,6 +51,46 @@ const routes: Routes = [
       import('./services/vaxeasy/vaxeasy.module').then((m) => m.VaxeasyModule),
     canActivate: [AuthguardGuard],
   },
+  { 
+    path: 'ApplyBusinessPermit', 
+    loadChildren: () => 
+    import('./services/createbusinesspermit/createbusinesspermit.module')
+    .then(m => m.CreatebusinesspermitModule),
+    canActivate: [AuthguardGuard], 
+  
+  },
+  { path: 'RenewBusinessPermit', 
+  loadChildren: () => 
+  import('./services/renewbusinesspermit/renewbusinesspermit.module').then(m => m.RenewbusinesspermitModule), 
+  canActivate: [AuthguardGuard],
+},
+  { 
+    path: 'businesspermit/list', 
+    loadChildren: () => import('./admin/businesspermitlist/businesspermitlist.module').then(m => m.BusinesspermitlistModule),
+    canActivate: [AuthguardGuard],
+  },
+  { 
+    path: 'businesspermit/:id', 
+    loadChildren: () => import('./admin/businesspermitbyid/businesspermitbyid.module').then(m => m.BusinesspermitbyidModule), 
+    canActivate: [AuthguardGuard],
+  },
+  { 
+    path: 'changepassword', 
+    loadChildren: () => import('./settings/changepassword/changepassword.module').then(m => m.ChangepasswordModule), 
+    canActivate: [AuthguardGuard],
+  },
+  { 
+    path: 'editprofile', 
+    loadChildren: () => import('./settings/editprofile/editprofile.module').then(m => m.EditprofileModule), 
+    canActivate: [AuthguardGuard],
+  },
+  { 
+    path: 'printout/:applicantemail', 
+    loadChildren: () => import('./admin/businesspermitbyidprintout/businesspermitbyidprintout.module')
+    .then(m => m.BusinesspermitbyidprintoutModule), 
+    canActivate: [AuthguardGuard]  
+  },
+    
 ];
 
 @NgModule({

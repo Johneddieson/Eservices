@@ -1,0 +1,180 @@
+<ngx-spinner type="pacman">
+    <div class="lds-facebook">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <p class="loading">Loading...</p>
+</ngx-spinner>
+<div class="container-fluid p-1 bg-white">
+    <div class="card content-container m-4 p-5" style="min-height: 10px">
+        <h4 class="cc-title fi-case-initial" id="top_label"><strong>Filter By :</strong></h4>
+        <div class="card-body" style="margin-top: 0rem; font-family: helvetica">
+            <div class="row">
+
+                <div class="col-lg-3">
+
+                    <h6>
+                        <input type="checkbox" [(ngModel)]="dateTodayCheckBox" />
+                        Date :
+                    </h6>
+                    <input type="date" class="form-control" value="{{dateToday}}" [(ngModel)]="datefromfilter">
+                </div>
+
+                <div class="col-lg-3">
+                    <h6>
+
+                        ‎ </h6>
+                    <input type="date" class="form-control" value="{{dateToday}}" [(ngModel)]="datetofilter">
+                </div>
+                <div class="col-lg-3">
+                    <h6>
+                        <input type="checkbox" [(ngModel)]="applicantFullnameCheckBox" />
+
+                        Applicant Fullname :
+                    </h6>
+                    <input type="text" class="form-control" [(ngModel)]="applicantfullnamefilter">
+                </div>
+
+                <div class="col-lg-3">
+                    <h6>
+                        <input type="checkbox" [(ngModel)]="applicantEmailCheckBox" />
+
+                        Applicant Email :
+                    </h6>
+                    <input type="text" class="form-control" [(ngModel)]="applicantemailfilter">
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <h6>
+                        <input type="checkbox" [(ngModel)]="taxpayerFullnameCheckBox" />
+                        Taxpayer Fullname :
+                    </h6>
+                    <input type="text" class="form-control" [(ngModel)]="taxpayerfullnamefilter">
+                </div>
+                <div class="col-lg-3">
+                    <h6>
+                        <input type="checkbox" [(ngModel)]="businessNameCheckBox" />
+                        Business Name :
+                    </h6>
+                    <input type="text" class="form-control" [(ngModel)]="businessnamefilter">
+                </div>
+                <div class="col-lg-3">
+
+                    <h6>
+                        <input type="checkbox" [(ngModel)]="businessPermitTypeCheckBox" />
+
+                        Business Permit Type :
+                    </h6>
+                    <select class="form-select" [(ngModel)]="typefilter">
+                        <option value="" selected="selected">SELECT BUSINESS PERMIT TYPE</option>
+                        <option value="NEW">NEW</option>
+                        <option value="RENEW">RENEW</option>
+                    </select>
+                </div>
+                <div class="col-lg-3">
+
+                    <h6>
+                        <input type="checkbox" [(ngModel)]="statusCheckBox" />
+
+                        Status :
+                    </h6>
+                    <select class="form-select" [(ngModel)]="statusfilter">
+                        <option value="" selected="selected">SELECT STATUS</option>
+                        <option value="APPROVED">APPROVED</option>
+                        <option value="PENDING">PENDING</option>
+                        <option value="REJECTED">REJECTED</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-lg-3">
+
+                </div>
+                <div class="col-lg-3">
+
+                </div>
+                <div class="col-lg-3">
+                    <h6>
+                        ‎
+                    </h6>
+                    <button type="button" class="btn btn-primary col-lg-12  btn-block"
+                        (click)="searchBusinessPermit()">
+                        Search
+                    </button>
+                </div>
+                <div class="col-lg-3">
+                    <h6>
+                        ‎
+                    </h6>
+                    <button type="button" class="btn btn-danger col-lg-12  btn-block" routerLink="/adminhome">
+                        Go Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid p-1 bg-white" style="overflow-x: hidden; overflow-y: auto;">
+    <div class="card content-container m-4 p-5" style="min-height: 10px;">
+        <h4 class="cc-title fi-case-initial" id="top_label"><strong>Business Permit List</strong></h4>
+        <div class="card-body" style="margin-top: 0rem; font-family: helvetica;">
+
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-striped col-lg-12">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col">Applicant</th>
+                            <!-- <th scope="col">Applicant Email</th> -->
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Taxpayer Fullname</th>
+                            <th scope="col">Business Name</th>
+                            <th scope="col">Tradename</th>
+                        </tr>
+                    </thead>
+                    <h1 *ngIf="collectionSize <= 0">No Result</h1>
+                    <tbody *ngIf="collectionSize > 0">
+                        <tr class="tablebody" *ngFor="let country of countries" style="cursor: pointer;"
+                            (click)="viewBusinessPermitApplication(country)">
+                            <td>{{ country.type }}</td>
+                            <th scope="row">{{ country.applicantFullname }}</th>
+                            <!-- <td> {{ country.applicantEmail }}</td> -->
+                            <td>{{ country.date | date: 'MM/dd/yyyy' }}</td>
+                            <td>{{ country.status }}</td>
+                            <td>{{ country.taxpayerFullname }}</td>
+                            <td>{{ country.businessname }}</td>
+                            <td>{{ country.tradenameFranchise }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between p-2">
+                <ngb-pagination [collectionSize]="collectionSize" [maxSize]="5" [(page)]="page" [pageSize]="pageSize"
+                    (pageChange)="refreshCountries()">
+                </ngb-pagination>
+
+                <!-- <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+                      <option [ngValue]="2">2 items per page</option>
+                      <option [ngValue]="4">4 items per page</option>
+                      <option [ngValue]="6">6 items per page</option>
+                  </select> -->
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

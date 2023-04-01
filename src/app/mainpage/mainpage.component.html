@@ -29,9 +29,14 @@
       <div *ngIf="isnull == true" class="data text-white text-center d-flex justify-content-center align-items-center h-75">
         <div>
             <h3 style="color: rgb(0, 0, 0); font-weight:bolder;">E-mail</h3>
+            
+            
+            <!-- Email input -->
             <input type="email" class="form-control" placeholder="Enter e-mail" 
             style="width: 245px;"
             [(ngModel)]="email" [ngModelOptions]="{standalone: true}"/>
+            
+            <!-- Password input -->
             <h3 style="color: rgb(0, 0, 0); font-weight:bolder;">Password</h3>
             <input type="password" class="form-control" 
             placeholder="Enter password" style="width: 245px;"
