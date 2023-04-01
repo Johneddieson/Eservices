@@ -56,102 +56,102 @@ export class AuthServiceService {
   //sql queries
 login(objects: any): Observable<any>
 {
-  return this.http.post("http://localhost:3000/users/login", objects);
+  return this.http.post("https://alcala.onrender.com/users/login", objects);
 }
 register(userObject: any): Observable<any>
 {
-  return this.http.post("http://localhost:3000/users/createuser", userObject);
+  return this.http.post("https://alcala.onrender.com/users/createuser", userObject);
 }
 getUserById(id: any): Observable<any>
 {
-  return this.http.get(`http://localhost:3000/users/getuserById/${id}`)
+  return this.http.get(`https://alcala.onrender.com/users/getuserById/${id}`)
 }
 createBusinessPermitForNew(object: any): Observable<any>
 {
-  return this.http.post(`http://localhost:3000/businesspermit/create`, object);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/create`, object);
 }
 createLineofBusinessForNew(object: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/createlineofbusiness`, object);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/createlineofbusiness`, object);
 }
 createAmendment(object: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/createamendment`, object);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/createamendment`, object);
 }
 createBasicInformation(object: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/createbasicinformation`, object);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/createbasicinformation`, object);
 }
 createOtherInformation(object: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/createotherinformation`, object);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/createotherinformation`, object);
 }
 totalPendings(): Observable<any> 
 {
-  return this.http.get(`http://localhost:3000/businesspermit/totalpendings`);
+  return this.http.get(`https://alcala.onrender.com/businesspermit/totalpendings`);
 }
 businesspermitlist(): Observable<any> 
 {
-  return this.http.get(`http://localhost:3000/businesspermit/businesspermitlist`);
+  return this.http.get(`https://alcala.onrender.com/businesspermit/businesspermitlist`);
 }
 businesspermitlistfilter(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/businesspermitlistfilter`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/businesspermitlistfilter`, obj);
 }
 getBusinessPermitById(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/getBusinessPermitById`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/getBusinessPermitById`, obj);
 }
 getAmendmentByBusinessPermitId(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/getAmendmentByBusinessPermitId`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/getAmendmentByBusinessPermitId`, obj);
 }
 getBasicInformationByBusinessPermitId(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/getBasicInformationByBusinessPermitId`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/getBasicInformationByBusinessPermitId`, obj);
 }
 getLineofBusinessByBusinessPermitId(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/getLineofBusinessByBusinessPermitId`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/getLineofBusinessByBusinessPermitId`, obj);
 }
 
 getotherInformationByBusinessPermitId(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/getotherInformationByBusinessPermitId`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/getotherInformationByBusinessPermitId`, obj);
 }
 updateBusinessPermitStatus(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/updateBusinessPermitStatus`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/updateBusinessPermitStatus`, obj);
 }
 
 getUsersById(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/getUsersById`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/getUsersById`, obj);
 }
 
 updateUsersBusinessPermitlength(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/updateUsersBusinessPermitlength`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/updateUsersBusinessPermitlength`, obj);
 }
 
 sendGridEmail(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/sendGridEmail`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/sendGridEmail`, obj);
 }
 changeUserPassword(obj: any): Observable<any>
 {
-  return this.http.post(`http://localhost:3000/users/changeUserPassword`, obj)
+  return this.http.post(`https://alcala.onrender.com/users/changeUserPassword`, obj)
 }
 updateProfileInformation(obj: any): Observable<any>
 {
-  return this.http.post(`http://localhost:3000/users/updateProfileInformation`, obj)
+  return this.http.post(`https://alcala.onrender.com/users/updateProfileInformation`, obj)
 }
 updateBusinessPermitAppointmentSchedule(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/updateBusinessPermitAppointmentSchedule`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/updateBusinessPermitAppointmentSchedule`, obj);
 }
 updateBusinessPermitDateApproved(obj: any): Observable<any> 
 {
-  return this.http.post(`http://localhost:3000/businesspermit/updateBusinessPermitDateApproved`, obj);
+  return this.http.post(`https://alcala.onrender.com/businesspermit/updateBusinessPermitDateApproved`, obj);
 }
 }
