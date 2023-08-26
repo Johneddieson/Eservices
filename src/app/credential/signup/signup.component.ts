@@ -304,7 +304,8 @@ export class SignupComponent implements OnInit, OnChanges {
     this.isMatchPassword = query !== this.confirmPassword ? false : true;
   }
   //captcha API Key
-  siteKey: string = '6LfklZgjAAAAAAXtisIMsHtmhMIVVJteLEoVx_yj';
+   //siteKey: string = '6LfklZgjAAAAAAXtisIMsHtmhMIVVJteLEoVx_yj';
+  siteKey: string = '6LdeEk4lAAAAABq0FhtlLsv6ZK6ldYUYw1bKhI2Y';
   
   //if there is a number in value password validation
   thereisnumber: boolean = false

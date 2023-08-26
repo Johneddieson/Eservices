@@ -549,6 +549,7 @@ DateApproved: string = ''
     else 
     {
       this.spinner.show().then(() => {});
+  
       var obj = {
         businesspermitid: this.businesspermitId,
         status: 'Rejected',
@@ -560,7 +561,17 @@ DateApproved: string = ''
           {
             to: this.applicantEmail,
             subject: "Your business permit application has been rejected",
-            text: this.remarks
+            text: this.remarks,
+            html: `${this.remarks}
+            <br>
+            <h5>Type :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['type'].value}</p>
+            <br>
+            <h5>Taxpayer/Registrant Fullname :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['taxpayerfirstname'].value} ${this.createNewBusinessPermitFormGroup.controls['taxpayermiddlename'].value} ${this.createNewBusinessPermitFormGroup.controls['taxpayerlastname'].value}</p>
+            <br>
+            <h5>Business Name :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['taxpayerbusinessname'].value}</p>
+            <br>
+            <h5>Trade Name / Franchise :</h5> <p>${this.createNewBusinessPermitFormGroup.controls['tradenamefranchise'].value}</p>`
+    
           }
           await this.authService.sendGridEmail(objForSendEmail).subscribe(data => 
             {

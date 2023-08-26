@@ -51,107 +51,107 @@ export class AuthServiceService {
   }
 
   
-
-
+public domain: string = 'http://localhost:3000'
+public domainproduction: string = 'https://alcalaeservices.onrender.com'
   //sql queries
 login(objects: any): Observable<any>
 {
-  return this.http.post("https://alcala.onrender.com/users/login", objects);
+  return this.http.post(`${this.domainproduction}/users/login`, objects);
 }
 register(userObject: any): Observable<any>
 {
-  return this.http.post("https://alcala.onrender.com/users/createuser", userObject);
+  return this.http.post(`${this.domainproduction}/users/createuser`, userObject);
 }
 getUserById(id: any): Observable<any>
 {
-  return this.http.get(`https://alcala.onrender.com/users/getuserById/${id}`)
+  return this.http.get(`${this.domainproduction}/users/getuserById/${id}`)
 }
 createBusinessPermitForNew(object: any): Observable<any>
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/create`, object);
+  return this.http.post(`${this.domainproduction}/businesspermit/create`, object);
 }
 createLineofBusinessForNew(object: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/createlineofbusiness`, object);
+  return this.http.post(`${this.domainproduction}/businesspermit/createlineofbusiness`, object);
 }
 createAmendment(object: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/createamendment`, object);
+  return this.http.post(`${this.domainproduction}/businesspermit/createamendment`, object);
 }
 createBasicInformation(object: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/createbasicinformation`, object);
+  return this.http.post(`${this.domainproduction}/businesspermit/createbasicinformation`, object);
 }
 createOtherInformation(object: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/createotherinformation`, object);
+  return this.http.post(`${this.domainproduction}/businesspermit/createotherinformation`, object);
 }
 totalPendings(): Observable<any> 
 {
-  return this.http.get(`https://alcala.onrender.com/businesspermit/totalpendings`);
+  return this.http.get(`${this.domainproduction}/businesspermit/totalpendings`);
 }
 businesspermitlist(): Observable<any> 
 {
-  return this.http.get(`https://alcala.onrender.com/businesspermit/businesspermitlist`);
+  return this.http.get(`${this.domainproduction}/businesspermit/businesspermitlist`);
 }
 businesspermitlistfilter(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/businesspermitlistfilter`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/businesspermitlistfilter`, obj);
 }
 getBusinessPermitById(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/getBusinessPermitById`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/getBusinessPermitById`, obj);
 }
 getAmendmentByBusinessPermitId(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/getAmendmentByBusinessPermitId`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/getAmendmentByBusinessPermitId`, obj);
 }
 getBasicInformationByBusinessPermitId(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/getBasicInformationByBusinessPermitId`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/getBasicInformationByBusinessPermitId`, obj);
 }
 getLineofBusinessByBusinessPermitId(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/getLineofBusinessByBusinessPermitId`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/getLineofBusinessByBusinessPermitId`, obj);
 }
 
 getotherInformationByBusinessPermitId(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/getotherInformationByBusinessPermitId`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/getotherInformationByBusinessPermitId`, obj);
 }
 updateBusinessPermitStatus(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/updateBusinessPermitStatus`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/updateBusinessPermitStatus`, obj);
 }
 
 getUsersById(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/getUsersById`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/getUsersById`, obj);
 }
 
 updateUsersBusinessPermitlength(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/updateUsersBusinessPermitlength`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/updateUsersBusinessPermitlength`, obj);
 }
 
 sendGridEmail(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/sendGridEmail`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/sendGridEmail`, obj);
 }
 changeUserPassword(obj: any): Observable<any>
 {
-  return this.http.post(`https://alcala.onrender.com/users/changeUserPassword`, obj)
+  return this.http.post(`${this.domainproduction}/users/changeUserPassword`, obj)
 }
 updateProfileInformation(obj: any): Observable<any>
 {
-  return this.http.post(`https://alcala.onrender.com/users/updateProfileInformation`, obj)
+  return this.http.post(`${this.domainproduction}/users/updateProfileInformation`, obj)
 }
 updateBusinessPermitAppointmentSchedule(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/updateBusinessPermitAppointmentSchedule`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/updateBusinessPermitAppointmentSchedule`, obj);
 }
 updateBusinessPermitDateApproved(obj: any): Observable<any> 
 {
-  return this.http.post(`https://alcala.onrender.com/businesspermit/updateBusinessPermitDateApproved`, obj);
+  return this.http.post(`${this.domainproduction}/businesspermit/updateBusinessPermitDateApproved`, obj);
 }
 }
